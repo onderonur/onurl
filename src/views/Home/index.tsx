@@ -26,7 +26,7 @@ type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit'];
 
 interface UrlFormValues {
   url: string;
-  customAlias: string;
+  customAlias?: string;
 }
 
 const INITIAL_VALUES: UrlFormValues = {
@@ -109,7 +109,9 @@ const HomeView = () => {
   const { data } = state;
   const url = data?.url;
   const alias = data?.alias;
-  const origin = isServer() ? process.env.NEXT_PUBLIC_BASE_URL : window.location.origin;
+  const origin = isServer()
+    ? process.env.NEXT_PUBLIC_BASE_URL
+    : window.location.origin;
   const shortenedUrl = alias ? `${origin}/${alias}` : null;
 
   const { onCopy, hasCopied } = useClipboard(shortenedUrl);
