@@ -21,6 +21,7 @@ import UrlShortenerSvg from './components/UrlShortenerSvg';
 import ExternalLink from '@/components/ExternalLink';
 import { MAX_CUSTOM_ALIAS_LENGTH } from '@/constants';
 import validator from 'validator';
+import ShareButtons from './components/ShareButtons';
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit'];
 
@@ -161,23 +162,23 @@ const HomeView = () => {
                   </Alert>
                 )}
                 {url && (
-                  <Text fontSize="lg">
-                    <Text as="span" fontWeight="bold">
-                      Old URL:
-                    </Text>{' '}
-                    <ExternalLink href={url}>{url}</ExternalLink>
-                  </Text>
-                )}
-                {url && (
-                  <Text fontSize="lg">
-                    <Text as="span" fontWeight="bold">
-                      Old URL Length:
-                    </Text>{' '}
-                    {url.length} characters
-                  </Text>
+                  <Box>
+                    <Text fontSize="lg">
+                      <Text as="span" fontWeight="bold">
+                        Old URL:
+                      </Text>{' '}
+                      <ExternalLink href={url}>{url}</ExternalLink>
+                    </Text>
+                    <Text fontSize="xs">
+                      <Text as="span" fontWeight="bold">
+                        Old URL Length:
+                      </Text>{' '}
+                      {url.length} characters
+                    </Text>
+                  </Box>
                 )}
                 {shortenedUrl && (
-                  <Stack spacing={0}>
+                  <Box>
                     <Flex alignItems="center">
                       <Text fontSize="lg" isTruncated>
                         <Text as="span" fontWeight="bold">
@@ -187,22 +188,30 @@ const HomeView = () => {
                           {shortenedUrl}
                         </ExternalLink>
                       </Text>
-                      <Button leftIcon="copy" onClick={onCopy}>
+                      <Button leftIcon="copy" onClick={onCopy} size="sm">
                         {hasCopied ? 'Copied' : 'Copy'}
                       </Button>
                     </Flex>
                     <Text fontSize="sm">
                       Click the link to open it in a new tab
                     </Text>
-                  </Stack>
+                    <Text fontSize="sm">
+                      <Text as="span" fontWeight="bold">
+                        New URL Length:
+                      </Text>{' '}
+                      {shortenedUrl.length} characters
+                    </Text>
+                  </Box>
                 )}
                 {shortenedUrl && (
-                  <Text fontSize="lg">
-                    <Text as="span" fontWeight="bold">
-                      New URL Length:
-                    </Text>{' '}
-                    {shortenedUrl.length} characters
-                  </Text>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    align="center"
+                    justify="center"
+                  >
+                    <ShareButtons url={shortenedUrl} />
+                  </Stack>
                 )}
               </Stack>
             </>
