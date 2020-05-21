@@ -23,7 +23,7 @@ interface ShareButtonsProps {
 const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
   const shareButtonProps = useMemo(
     () => ({
-      url: url.replace('http://localhost:3000', 'https://on-url.now.sh'),
+      url,
     }),
     [url],
   );
