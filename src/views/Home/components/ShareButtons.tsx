@@ -15,15 +15,16 @@ import {
   TumblrIcon,
 } from 'react-share';
 import ShareButtonTooltip from './ShareButtonTooltip';
+import { Maybe } from '@/types';
 
 interface ShareButtonsProps {
-  url: string;
+  url: Maybe<string>;
 }
 
 const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
   const shareButtonProps = useMemo(
     () => ({
-      url,
+      url: url || '',
     }),
     [url],
   );
@@ -36,8 +37,12 @@ const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
     shareIconSize,
   ]);
 
+  if (!url) {
+    return null;
+  }
+
   return (
-    <Stack spacing={2} direction="row" flexWrap="wrap">
+    <Stack spacing={2} direction="row" flexWrap="wrap" justify="center">
       <Box>
         <ShareButtonTooltip name="Facebook">
           <FacebookShareButton {...shareButtonProps}>

@@ -203,16 +203,7 @@ const HomeView = () => {
                     </Text>
                   </Box>
                 )}
-                {shortenedUrl && (
-                  <Stack
-                    spacing={2}
-                    direction="row"
-                    align="center"
-                    justify="center"
-                  >
-                    <ShareButtons url={shortenedUrl} />
-                  </Stack>
-                )}
+                <ShareButtons url={shortenedUrl} />
               </Stack>
             </>
           );

@@ -23,7 +23,7 @@ const Layout: React.FC = ({ children }) => {
             OnURL
           </Link>
         </NextLink>
-        <Link href="https://github.com/onderonur/on-url" isExternal>
+        <Link href="https://github.com/onderonur/onurl" isExternal>
           <Box as={FaGithub} fontSize="3xl" />
         </Link>
       </Flex>
