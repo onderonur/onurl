@@ -1,7 +1,7 @@
 
 ## OnURL
 
-OnURL is a URL shortener which makes it easy to shorten and share your short URLs.
+OnURL is a URL shortener which makes it easy to shorten and share your short URLs.  
 Live site on [Vercel](https://vercel.com) is **[here](https://onurl.now.sh/)**.
 
 ### Stack
