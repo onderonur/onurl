@@ -13,7 +13,8 @@ import { DefaultSeoProps, DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/dist/client/router';
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const url = `${baseUrl}${pathname}`;
   const title = APP_TITLE;
   const description = `${APP_TITLE} is a URL shortener which makes it easy to shorten and share your short URLs.`;
   return {
@@ -27,6 +28,26 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
       description,
       // eslint-disable-next-line @typescript-eslint/camelcase
       site_name: APP_TITLE,
+      images: [
+        {
+          url: `${baseUrl}/logo_500.png`,
+          height: 500,
+          width: 500,
+          alt: 'OnURL large logo',
+        },
+        {
+          url: `${baseUrl}/logo_200.png`,
+          height: 200,
+          width: 200,
+          alt: 'OnURL medium logo',
+        },
+        {
+          url: `${baseUrl}/logo_80.png`,
+          height: 80,
+          width: 80,
+          alt: 'OnURL small logo',
+        },
+      ],
     },
     additionalMetaTags: [
       { name: 'application-name', content: title },
