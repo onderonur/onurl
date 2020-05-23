@@ -13,11 +13,25 @@ import { DefaultSeoProps, DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/dist/client/router';
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`;
+  const title = APP_TITLE;
+  const description = `${APP_TITLE} is a URL shortener which makes it easy to shorten and share your short URLs.`;
   return {
-    title: APP_TITLE,
+    title,
+    canonical: url,
+    description,
     openGraph: {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`,
+      url,
+      title,
+      type: 'website',
+      description,
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      site_name: APP_TITLE,
     },
+    additionalMetaTags: [
+      { name: 'application-name', content: title },
+      { property: 'dc:creator', content: 'Onur Önder' },
+    ],
   };
 };
 

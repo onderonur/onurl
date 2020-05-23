@@ -13,6 +13,8 @@ import {
   RedditIcon,
   TumblrShareButton,
   TumblrIcon,
+  MailruShareButton,
+  MailruIcon,
 } from 'react-share';
 import ShareButtonTooltip from './ShareButtonTooltip';
 import { Maybe } from '@/types';
@@ -76,6 +78,13 @@ const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
           <LinkedinShareButton {...shareButtonProps}>
             <LinkedinIcon {...shareIconProps} />
           </LinkedinShareButton>
+        </ShareButtonTooltip>
+      </Box>
+      <Box>
+        <ShareButtonTooltip name="Mail.Ru">
+          <MailruShareButton {...shareButtonProps}>
+            <MailruIcon {...shareIconProps} />
+          </MailruShareButton>
         </ShareButtonTooltip>
       </Box>
       <Box>
