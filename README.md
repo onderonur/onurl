@@ -1,30 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## OnURL
 
-First, run the development server:
+OnURL is a URL shortener which makes it easy to shorten and share your short URLs.
+Live site on [Vercel](https://vercel.com) is **[here](https://onurl.now.sh/)**.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Stack
+* Framework: [Next.js](https://nextjs.org/)
+* UI Components: [Chakra UI](https://chakra-ui.com/)
+* Forms: [Formik](https://jaredpalmer.com/formik)
+* Form Validations: [Yup](https://github.com/jquense/yup)
+* Icons: [react-icons](https://react-icons.github.io/react-icons/)
+* Social Media Share Buttons: [react-share](https://github.com/nygardk/react-share)
+* SEO: [Next SEO](https://github.com/garmeeh/next-seo)
+* Database: [MongoDB](https://www.mongodb.com/)
+* ODM: [Mongoose](https://mongoosejs.com/)
+* Illustrations: [unDraw](https://undraw.co/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+To run it in development mode:
 
-## Learn More
+#### `npm install`
 
-To learn more about Next.js, take a look at the following resources:
+#### `npm run dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Vercel Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Vercel's Now](https://vercel.com/) is one of the simplest deployment options ever. [Deploying a Next.js App](https://nextjs.org/learn/basics/deploying-a-nextjs-app) guide is just what you would need. I just downloaded the [official cli](https://vercel.com/download) and run `vercel`. That's it!
