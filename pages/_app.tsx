@@ -30,9 +30,9 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
       site_name: APP_TITLE,
       images: [
         {
-          url: `${baseUrl}/logo_500.png`,
-          height: 500,
-          width: 500,
+          url: `${baseUrl}/logo_400.png`,
+          height: 400,
+          width: 400,
           alt: 'OnURL large logo',
         },
         {
