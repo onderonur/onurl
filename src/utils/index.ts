@@ -40,3 +40,5 @@ export const isNonEmptyString = (value: unknown): value is string => {
 };
 
 export const trimString = (str: string) => str.trim();
+
+export const doesUrlHasProtocol = (url: string) => /^https?:\/\//i.test(url);
