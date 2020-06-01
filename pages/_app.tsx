@@ -26,7 +26,6 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
       title,
       type: 'website',
       description,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       site_name: APP_TITLE,
       images: [
         {
