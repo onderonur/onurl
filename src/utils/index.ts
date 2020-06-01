@@ -1,5 +1,6 @@
 import { ServerResponse } from 'http';
 import { Maybe } from '@/types';
+import { parse } from 'uri-js';
 
 export const isServer = () => {
   return typeof window === 'undefined';
@@ -42,5 +43,11 @@ export const isNonEmptyString = (value: unknown): value is string => {
 export const trimString = (str: string) => str.trim();
 
 // https://stackoverflow.com/a/19709846
-export const isAbsoluteUrl = (url: string) =>
-  new RegExp('^(?:[a-z]+:)?//', 'i').test(url);
+export const isAbsoluteUrl = (url: string) => {
+  if (url.startsWith('//')) {
+    return true;
+  }
+
+  const uri = parse(url);
+  return !!uri.scheme;
+};
