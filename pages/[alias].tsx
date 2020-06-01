@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { pageRedirect, doesUrlHasProtocol } from '@/utils';
+import { pageRedirect, isAbsoluteUrl } from '@/utils';
 import AliasView from '@/views/Alias';
 
 // Tried this with "getServerSideProps" too.
@@ -20,7 +20,7 @@ AliasView.getInitialProps = async ({ res, query }) => {
     // "https" prefix is required.
     // Otherwise, it redirects to "http://localhost:3000/<url>"
     // instead of "https://<url>".
-    if (!doesUrlHasProtocol(url)) {
+    if (!isAbsoluteUrl(url)) {
       url = 'https://' + url;
     }
     pageRedirect(res, url, { replace: true });

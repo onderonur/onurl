@@ -41,4 +41,6 @@ export const isNonEmptyString = (value: unknown): value is string => {
 
 export const trimString = (str: string) => str.trim();
 
-export const doesUrlHasProtocol = (url: string) => /^https?:\/\//i.test(url);
+// https://stackoverflow.com/a/19709846
+export const isAbsoluteUrl = (url: string) =>
+  new RegExp('^(?:[a-z]+:)?//', 'i').test(url);
