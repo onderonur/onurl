@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import validator from 'validator';
 import handleErrors from '@/api/middlewares/handleErrors';
 import createError from '@/api/utils/createError';
-import { isNonEmptyString } from '@/utils';
+import { isNonEmptyString, isAbsoluteUrl } from '@/utils';
 import { URL_ALIAS_SIZE } from '@/constants';
 
 const extractGetInput = (req: NextApiRequest) => {
@@ -23,6 +23,12 @@ const extractPostInput = (req: NextApiRequest) => {
   url = url.trim();
   if (!validator.isURL(url)) {
     throw createError(422, 'Invalid URL');
+  }
+  // If we have no protocol, we add "http" prefix.
+  // Otherwise, it redirects to "http://localhost:3000/<url>"
+  // instead of "http(s)://<url>".
+  if (!isAbsoluteUrl(url)) {
+    url = `http://${url}`;
   }
   let { customAlias } = req.body;
   customAlias = customAlias.toString().trim();

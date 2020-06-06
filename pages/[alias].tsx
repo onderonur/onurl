@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { pageRedirect, isAbsoluteUrl } from '@/utils';
+import { pageRedirect } from '@/utils';
 import AliasView from '@/views/Alias';
 
 // Tried this with "getServerSideProps" too.
@@ -16,13 +16,7 @@ AliasView.getInitialProps = async ({ res, query }) => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/shorturl?alias=${alias}`,
     );
     const { data } = response;
-    let { url } = data;
-    // "https" prefix is required.
-    // Otherwise, it redirects to "http://localhost:3000/<url>"
-    // instead of "https://<url>".
-    if (!isAbsoluteUrl(url)) {
-      url = 'https://' + url;
-    }
+    const { url } = data;
     pageRedirect(res, url, { replace: true });
   } catch (err) {
     const { response } = err;

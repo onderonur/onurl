@@ -1,15 +1,9 @@
 import React from 'react';
 import { LinkProps, Link, Icon } from '@chakra-ui/core';
-import { isAbsoluteUrl } from '@/utils';
 
 const ExternalLink: React.FC<LinkProps> = ({ children, href, ...rest }) => {
   return (
-    <Link
-      color="purple.600"
-      {...rest}
-      href={href && !isAbsoluteUrl(href) ? `//${href}` : href}
-      isExternal
-    >
+    <Link color="purple.600" {...rest} href={href} isExternal>
       {children} <Icon name="external-link" mx="2px" />
     </Link>
   );
