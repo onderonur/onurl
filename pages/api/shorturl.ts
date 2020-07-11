@@ -5,7 +5,7 @@ import validator from 'validator';
 import handleErrors from '@/api/middlewares/handleErrors';
 import createError from '@/api/utils/createError';
 import { isNonEmptyString, isAbsoluteUrl } from '@/utils';
-import { URL_ALIAS_SIZE } from '@/constants';
+import { urlAliasLength } from '@/constants';
 
 const extractGetInput = (req: NextApiRequest) => {
   const { alias } = req.query;
@@ -59,7 +59,7 @@ const handler: NextApiHandler = async (req, res) => {
       const { url, customAlias } = extractPostInput(req);
       const shortened = new models.ShortUrl({
         url,
-        alias: customAlias || nanoid(URL_ALIAS_SIZE),
+        alias: customAlias || nanoid(urlAliasLength),
       });
       await shortened.save();
       res.json(shortened);

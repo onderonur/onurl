@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { BaseDocumentData } from './types';
-import { MAX_CUSTOM_ALIAS_LENGTH } from '@/constants';
+import { maxCustomAliasLength } from '@/constants';
 import uniqueValidator from 'mongoose-unique-validator';
 
 interface ShortUrlFields {
@@ -21,7 +21,7 @@ const shortUrlSchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
-      maxlength: MAX_CUSTOM_ALIAS_LENGTH,
+      maxlength: maxCustomAliasLength,
     },
     clicks: { type: Number, required: true, default: 0 },
   },

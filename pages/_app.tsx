@@ -8,15 +8,15 @@ import {
   theme,
   CSSResetProps,
 } from '@chakra-ui/core';
-import { APP_TITLE } from '@/constants';
+import { appTitle } from '@/constants';
 import { DefaultSeoProps, DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/dist/client/router';
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const url = `${baseUrl}${pathname}`;
-  const title = APP_TITLE;
-  const description = `${APP_TITLE} is a URL shortener which makes it easy to shorten and share your short URLs.`;
+  const title = appTitle;
+  const description = `${appTitle} is a URL shortener which makes it easy to shorten and share your short URLs.`;
   return {
     title,
     canonical: url,
@@ -26,7 +26,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
       title,
       type: 'website',
       description,
-      site_name: APP_TITLE,
+      site_name: appTitle,
       images: [
         {
           url: `${baseUrl}/logo_400.png`,

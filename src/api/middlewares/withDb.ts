@@ -10,7 +10,7 @@ declare module 'http' {
   }
 }
 
-const READY_STATES = {
+const readyStates = {
   disconnected: 0,
   connected: 1,
   connecting: 2,
@@ -39,9 +39,9 @@ const withDb = (fn: NextApiHandler) => async (
   // TODO: May need the handle concurrent requests
   // with a little bit more details (disconnecting, disconnected etc).
   switch (readyState) {
-    case READY_STATES.connected:
+    case readyStates.connected:
       return next();
-    case READY_STATES.connecting:
+    case readyStates.connecting:
       return new Promise<void>((resolve, reject) => {
         queue.push({ resolve, reject, next });
       });

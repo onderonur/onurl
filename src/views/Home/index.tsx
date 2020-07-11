@@ -19,7 +19,7 @@ import BaseInput from '@/components/BaseInput';
 import { ShortUrlData } from '@/api/models/ShortUrl';
 import UrlShortenerSvg from './components/UrlShortenerSvg';
 import ExternalLink from '@/components/ExternalLink';
-import { MAX_CUSTOM_ALIAS_LENGTH } from '@/constants';
+import { maxCustomAliasLength } from '@/constants';
 import validator from 'validator';
 import ShareButtons from './components/ShareButtons';
 
@@ -30,12 +30,12 @@ interface UrlFormValues {
   customAlias?: string;
 }
 
-const INITIAL_VALUES: UrlFormValues = {
+const initialValues: UrlFormValues = {
   url: '',
   customAlias: '',
 };
 
-const VALIDATION_SCHEMA = Yup.object().shape<UrlFormValues>({
+const validationSchema = Yup.object().shape<UrlFormValues>({
   url: Yup.string()
     .label('URL')
     .required()
@@ -45,7 +45,7 @@ const VALIDATION_SCHEMA = Yup.object().shape<UrlFormValues>({
     .transform(trimString),
   customAlias: Yup.string()
     .label('Custom Alias')
-    .max(MAX_CUSTOM_ALIAS_LENGTH)
+    .max(maxCustomAliasLength)
     .transform(trimString),
 });
 
@@ -83,13 +83,13 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-const INITIAL_STATE: State = {
+const initialState: State = {
   data: undefined,
   error: undefined,
 };
 
 const HomeView = () => {
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(
     async (values, formikHelpers) => {
@@ -125,8 +125,8 @@ const HomeView = () => {
         <UrlShortenerSvg />
       </Box>
       <Formik<UrlFormValues>
-        initialValues={INITIAL_VALUES}
-        validationSchema={VALIDATION_SCHEMA}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         {({ isValid, isSubmitting }) => {
