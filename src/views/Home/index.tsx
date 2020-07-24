@@ -22,6 +22,24 @@ import ExternalLink from '@/components/ExternalLink';
 import { maxCustomAliasLength } from '@/constants';
 import validator from 'validator';
 import ShareButtons from './components/ShareButtons';
+import QRCode from 'qrcode.react';
+import styled from '@emotion/styled';
+import { saveAs } from 'file-saver';
+
+const qrCodeId = 'qrCode';
+const qrCodeSize = 256;
+
+const handleSaveQrCode = async () => {
+  const canvas = document.getElementById(qrCodeId) as HTMLCanvasElement;
+  const png = canvas?.toDataURL();
+  saveAs(png, `OnUrl-QRCode-${Date.now}`);
+};
+
+const StyledQRCode = styled(QRCode)`
+  display: block;
+  height: auto !important;
+  width: 100% !important;
+`;
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit'];
 
@@ -201,6 +219,31 @@ const HomeView = () => {
                       </Text>{' '}
                       {shortenedUrl.length} characters
                     </Text>
+                  </Box>
+                )}
+                {shortenedUrl && (
+                  <Box maxWidth={qrCodeSize}>
+                    <Text fontSize="lg" fontWeight="bold">
+                      QR Code:
+                    </Text>
+                    <StyledQRCode value={shortenedUrl} renderAs="svg" />
+                    {/* This hidden qr code is just used to download it easily.
+                    Converting the svg to png or jpeg and then downloading didn't work for now. */}
+                    <Box hidden>
+                      <StyledQRCode
+                        id={qrCodeId}
+                        value={shortenedUrl}
+                        size={qrCodeSize * 2}
+                      />
+                    </Box>
+                    <Button
+                      leftIcon="download"
+                      variantColor="pink"
+                      width="100%"
+                      onClick={handleSaveQrCode}
+                    >
+                      Save
+                    </Button>
                   </Box>
                 )}
                 <ShareButtons url={shortenedUrl} />

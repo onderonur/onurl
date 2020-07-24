@@ -34,9 +34,9 @@ const withDb = (fn: NextApiHandler) => async (
     return fn(req, res);
   };
 
-  const { readyState } = mongoose.connections[0];
+  const { readyState } = mongoose.connection;
 
-  // TODO: May need the handle concurrent requests
+  // TODO: May need to handle concurrent requests
   // with a little bit more details (disconnecting, disconnected etc).
   switch (readyState) {
     case readyStates.connected:
