@@ -5,12 +5,13 @@ import {
   ThemeProvider,
   CSSReset,
   ColorModeProvider,
-  theme,
+  theme as chakraTheme,
   CSSResetProps,
 } from '@chakra-ui/core';
 import { appTitle } from '@/constants';
 import { DefaultSeoProps, DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/dist/client/router';
+import customTheme from '@/theme';
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -56,16 +57,10 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
 };
 
 const getCSSResetConfig: CSSResetProps['config'] = (theme, defaultConfig) => {
-  const { colors } = theme;
   return {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     ...defaultConfig!,
-    light: {
-      bg: colors.twitter[200],
-      borderColor: colors.purple[200],
-      color: colors.black[800],
-      placeholderColor: colors.purple[200],
-    },
+    light: customTheme,
   };
 };
 
@@ -74,7 +69,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={chakraTheme}>
         <ColorModeProvider value="light">
           <CSSReset config={getCSSResetConfig} />
           <Layout>
