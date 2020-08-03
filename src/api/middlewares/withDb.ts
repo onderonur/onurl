@@ -17,12 +17,7 @@ const readyStates = {
   disconnecting: 3,
 };
 
-let queue: {
-  resolve: (next: void) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  reject: (err: any) => void;
-  next: VoidFunction;
-}[] = [];
+let pendingPromise: Maybe<Promise<typeof mongoose>> = null;
 
 // https://hoangvvo.com/blog/migrate-from-express-js-to-next-js-api-routes/
 const withDb = (fn: NextApiHandler) => async (
@@ -38,30 +33,27 @@ const withDb = (fn: NextApiHandler) => async (
 
   // TODO: May need to handle concurrent requests
   // with a little bit more details (disconnecting, disconnected etc).
-  switch (readyState) {
-    case readyStates.connected:
-      return next();
-    case readyStates.connecting:
-      return new Promise<void>((resolve, reject) => {
-        queue.push({ resolve, reject, next });
-      });
-    default:
-      try {
-        await mongoose.connect(process.env.DB, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-          useCreateIndex: true,
-        });
-
-        next();
-      } catch (err) {
-        queue.forEach(({ reject }) => reject(err));
-        queue = [];
-      }
-
-      queue.forEach(({ resolve, next }) => resolve(next()));
-      queue = [];
+  if (readyState === readyStates.connected) {
+    return next();
+  } else if (pendingPromise) {
+    // Wait for the already pending promise if there is one.
+    await pendingPromise;
+    return next();
   }
+
+  pendingPromise = mongoose.connect(process.env.DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  });
+
+  try {
+    await pendingPromise;
+  } finally {
+    pendingPromise = null;
+  }
+
+  next();
 };
 
 export default withDb;
