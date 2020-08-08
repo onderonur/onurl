@@ -1,8 +1,7 @@
 import React, { useCallback, useReducer } from 'react';
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { isServer, trimString } from '@/utils';
+import { isServer } from '@/utils';
 import { Formik, Form, FormikConfig } from 'formik';
-import * as Yup from 'yup';
 import {
   Button,
   Flex,
@@ -14,43 +13,25 @@ import {
   Stack,
   Box,
 } from '@chakra-ui/core';
-import { Maybe } from '@/types';
+import { Maybe, ShortUrlInput } from '@/types';
 import BaseInput from '@/components/BaseInput';
 import { ShortUrlData } from '@/api/models/ShortUrl';
 import UrlShortenerSvg from './components/UrlShortenerSvg';
 import ExternalLink from '@/components/ExternalLink';
-import { maxCustomAliasLength } from '@/constants';
-import validator from 'validator';
 import ShareButtons from './components/ShareButtons';
 import UrlQrCode from './components/UrlQrCode';
+import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
 
 const qrCodeSize = 256;
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit'];
 
-interface UrlFormValues {
-  url: string;
-  customAlias?: string;
-}
+type UrlFormValues = ShortUrlInput;
 
 const initialValues: UrlFormValues = {
   url: '',
   customAlias: '',
 };
-
-const validationSchema = Yup.object().shape<UrlFormValues>({
-  url: Yup.string()
-    .label('URL')
-    .required()
-    .test('is-url', 'This is not a valid URL', (value) =>
-      value ? validator.isURL(value) : true,
-    )
-    .transform(trimString),
-  customAlias: Yup.string()
-    .label('Custom Alias')
-    .max(maxCustomAliasLength)
-    .transform(trimString),
-});
 
 interface State {
   data: Maybe<ShortUrlData>;
@@ -129,7 +110,8 @@ const HomeView = () => {
       </Box>
       <Formik<UrlFormValues>
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validationSchema={shortUrlInputValidationSchema}
+        validateOnMount
         onSubmit={handleSubmit}
       >
         {({ isValid, isSubmitting }) => {

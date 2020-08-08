@@ -1,29 +1,48 @@
 import { NextApiHandler, NextApiRequest } from 'next';
 import withDb from '@/api/middlewares/withDb';
 import { nanoid } from 'nanoid';
-import validator from 'validator';
 import handleErrors from '@/api/middlewares/handleErrors';
 import createError from '@/api/utils/createError';
-import { isNonEmptyString, isAbsoluteUrl } from '@/utils';
 import { urlAliasLength } from '@/constants';
+import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
+import * as Yup from 'yup';
+import { parse } from 'uri-js';
 
-const extractGetInput = (req: NextApiRequest) => {
+const getInputValidationSchema = Yup.object().shape({
+  alias: Yup.string().label('Alias').required().trim(),
+});
+
+const extractGetInput = async (req: NextApiRequest) => {
+  try {
+    await getInputValidationSchema.validate(req.query);
+  } catch (err) {
+    throw createError(422, err.message);
+  }
   const { alias } = req.query;
-  if (!isNonEmptyString(alias)) {
-    throw createError(422, 'Invalid Alias');
+  if (typeof alias !== 'string') {
+    throw createError(422, 'Invalid URL');
   }
   return alias;
 };
 
-const extractPostInput = (req: NextApiRequest) => {
+// https://stackoverflow.com/a/19709846
+const isAbsoluteUrl = (url: string) => {
+  if (url.startsWith('//')) {
+    return true;
+  }
+
+  const uri = parse(url);
+  return !!uri.scheme;
+};
+
+const extractPostInput = async (req: NextApiRequest) => {
+  try {
+    await shortUrlInputValidationSchema.validate(req.body);
+  } catch (err) {
+    throw createError(422, err.message);
+  }
   let { url } = req.body;
-  if (!isNonEmptyString(url)) {
-    throw createError(422, 'Invalid URL');
-  }
   url = url.trim();
-  if (!validator.isURL(url)) {
-    throw createError(422, 'Invalid URL');
-  }
   // If we have no protocol, we add "http" prefix.
   // Otherwise, it redirects to "http://localhost:3000/<url>"
   // instead of "http(s)://<url>".
@@ -31,7 +50,7 @@ const extractPostInput = (req: NextApiRequest) => {
     url = `http://${url}`;
   }
   let { customAlias } = req.body;
-  customAlias = customAlias.toString().trim();
+  customAlias = customAlias.trim();
   customAlias = encodeURIComponent(customAlias);
   return { url, customAlias };
 };
@@ -43,7 +62,7 @@ const handler: NextApiHandler = async (req, res) => {
   }
   switch (req.method) {
     case 'GET':
-      const alias = extractGetInput(req);
+      const alias = await extractGetInput(req);
       const shortUrl = await models.ShortUrl.findOneAndUpdate(
         { alias },
         { $inc: { clicks: 1 } },
@@ -56,7 +75,7 @@ const handler: NextApiHandler = async (req, res) => {
       res.json(shortUrl);
       break;
     case 'POST':
-      const { url, customAlias } = extractPostInput(req);
+      const { url, customAlias } = await extractPostInput(req);
       const shortened = new models.ShortUrl({
         url,
         alias: customAlias || nanoid(urlAliasLength),
