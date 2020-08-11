@@ -81,7 +81,11 @@ AliasView.getInitialProps = async ({ res, query }) => {
     pageRedirect(res, url, { replace: true });
   } catch (err) {
     const { response } = err;
-    error = `${response.status}: ${response.data}`;
+    if (response) {
+      error = `${response.status}: ${response.data}`;
+    } else {
+      error = 'An unknown error occured';
+    }
     return { error };
   }
   return {};

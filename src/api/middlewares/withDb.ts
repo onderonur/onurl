@@ -45,6 +45,7 @@ const withDb = (fn: NextApiHandler) => async (
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: true,
   });
 
   try {
@@ -53,7 +54,13 @@ const withDb = (fn: NextApiHandler) => async (
     pendingPromise = null;
   }
 
-  next();
+  // We need to return "next" from "withDb". Otherwise, if it wraps an async function,
+  // the wrapper function of "withDb" (like "handleErrors" etc)
+  // can't wait and catch errors inside it the function wrapped by "withDb".
+  // It just waits for "withDb" to complete and continues.
+  // As an alternative, we can "await" this "next" too of course.
+  // Main point is, waiting it to be completed.
+  return next();
 };
 
 export default withDb;
