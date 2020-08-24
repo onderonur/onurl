@@ -82,7 +82,8 @@ AliasView.getInitialProps = async ({ res, query }) => {
   } catch (err) {
     const { response } = err;
     if (response) {
-      error = `${response.status}: ${response.data}`;
+      const { data } = response;
+      error = `${data.statusCode}: ${data.message}`;
     } else {
       error = 'An unknown error occured';
     }
