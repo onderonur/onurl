@@ -16,7 +16,7 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.now.sh/)**.
 * ODM: [Mongoose](https://mongoosejs.com/)
 * Illustrations: [unDraw](https://undraw.co/)
 * Linting: [ESLint](https://eslint.org/)
-* Code formatting: [Prettier](https://prettier.io/)
+* Code Formatting: [Prettier](https://prettier.io/)
 
 ### Development
 
