@@ -22,6 +22,11 @@ import ShareButtons from './components/ShareButtons';
 import UrlQrCode from './components/UrlQrCode';
 import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isAxiosError(error: any): error is AxiosError {
+  return (error as AxiosError).isAxiosError;
+}
+
 const qrCodeSize = 256;
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit'];
@@ -41,7 +46,7 @@ interface State {
 type Action =
   | { type: 'request' }
   | { type: 'success'; response: AxiosResponse }
-  | { type: 'error'; error: AxiosError };
+  | { type: 'error'; error: AxiosError | Error };
 
 const doRequest = (): Action => ({
   type: 'request',
@@ -52,7 +57,10 @@ const doSuccess = (response: AxiosResponse): Action => ({
   response,
 });
 
-const doError = (error: AxiosError): Action => ({ type: 'error', error });
+const doError = (error: AxiosError | Error): Action => ({
+  type: 'error',
+  error,
+});
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -61,7 +69,15 @@ const reducer = (state: State, action: Action): State => {
     case 'success':
       return { ...state, data: action.response.data };
     case 'error':
-      return { ...state, error: action.error.response?.data };
+      const { error } = action;
+      let errorMessage = error.message;
+      if (isAxiosError(error)) {
+        errorMessage = error.response?.data.message ?? errorMessage;
+      }
+      return {
+        ...state,
+        error: errorMessage,
+      };
     default:
       throw new Error();
   }
@@ -101,7 +117,7 @@ const HomeView = () => {
 
   const { onCopy, hasCopied } = useClipboard(shortenedUrl);
 
-  const error = state.error;
+  const { error } = state;
 
   return (
     <>
