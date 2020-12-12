@@ -1,17 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import Layout from '@/components/Layout';
-import {
-  ThemeProvider,
-  CSSReset,
-  ColorModeProvider,
-  theme as chakraTheme,
-  CSSResetProps,
-} from '@chakra-ui/core';
 import { appTitle } from '@/constants';
 import { DefaultSeoProps, DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/dist/client/router';
-import customTheme from '@/theme';
+import BaseThemeProvider from '@/components/BaseThemeProvider';
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -56,27 +49,25 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   };
 };
 
-const getCSSResetConfig: CSSResetProps['config'] = (theme, defaultConfig) => {
-  return {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    ...defaultConfig!,
-    light: customTheme,
-  };
-};
-
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
+
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement?.removeChild(jssStyles);
+    }
+  }, []);
+
   return (
     <>
       <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
-      <ThemeProvider theme={chakraTheme}>
-        <ColorModeProvider value="light">
-          <CSSReset config={getCSSResetConfig} />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ColorModeProvider>
-      </ThemeProvider>
+      <BaseThemeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </BaseThemeProvider>
     </>
   );
 };

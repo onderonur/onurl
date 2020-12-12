@@ -1,19 +1,20 @@
+import { Tooltip } from '@material-ui/core';
 import React from 'react';
-import { Tooltip } from '@chakra-ui/core';
 
 interface ShareButtonTooltipProps {
   name: string;
+  children: React.ReactElement;
 }
 
-const ShareButtonTooltip = React.memo<
-  React.PropsWithChildren<ShareButtonTooltipProps>
->(({ name, children }) => {
-  const label = `Share on ${name}`;
-  return (
-    <Tooltip label={label} aria-label={label} hasArrow>
-      {children}
-    </Tooltip>
-  );
-});
+const ShareButtonTooltip = React.memo<ShareButtonTooltipProps>(
+  ({ name, children }) => {
+    const label = `Share on ${name}`;
+    return (
+      <Tooltip title={label} aria-label={label}>
+        {children}
+      </Tooltip>
+    );
+  },
+);
 
 export default ShareButtonTooltip;

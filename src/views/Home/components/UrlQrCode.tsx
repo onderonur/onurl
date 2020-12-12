@@ -1,8 +1,14 @@
 import React from 'react';
-import { Button, Box } from '@chakra-ui/core';
 import QRCode from 'qrcode.react';
-import styled from '@emotion/styled';
 import { saveAs } from 'file-saver';
+import styled from 'styled-components';
+import { Box } from '@material-ui/core';
+import BaseButton from '@/components/BaseButton';
+import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined';
+
+const SaveButton = styled(BaseButton)`
+  width: 100%;
+` as typeof BaseButton;
 
 const qrCodeId = 'qrCode';
 
@@ -32,14 +38,14 @@ const UrlQrCode = React.memo<UrlQrCodeProps>(function UrlQrCode({ url, size }) {
       <Box hidden>
         <StyledQRCode id={qrCodeId} value={url} size={size * 2} />
       </Box>
-      <Button
-        leftIcon="download"
-        variantColor="pink"
-        width="100%"
+      <SaveButton
+        startIcon={<CloudDownloadOutlinedIcon />}
+        variant="contained"
+        color="secondary"
         onClick={handleSaveQrCode}
       >
         Save
-      </Button>
+      </SaveButton>
     </>
   );
 });

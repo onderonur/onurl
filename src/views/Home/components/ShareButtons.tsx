@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { useTheme, Stack, Box } from '@chakra-ui/core';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -18,6 +17,8 @@ import {
 } from 'react-share';
 import ShareButtonTooltip from './ShareButtonTooltip';
 import { Maybe } from '@/types';
+import { Box } from '@material-ui/core';
+import Spacer from '@/components/Spacer';
 
 interface ShareButtonsProps {
   url: Maybe<string>;
@@ -31,9 +32,7 @@ const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
     [url],
   );
 
-  const theme = useTheme();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const shareIconSize = theme.fontSizes['5xl'] as any;
+  const shareIconSize = '3.2rem';
 
   const shareIconProps = useMemo(() => ({ size: shareIconSize, round: true }), [
     shareIconSize,
@@ -44,7 +43,12 @@ const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
   }
 
   return (
-    <Stack spacing={2} direction="row" flexWrap="wrap" justify="center">
+    <Spacer
+      flexDirection="row"
+      spacing={2}
+      flexWrap="wrap"
+      justifyContent="center"
+    >
       <Box>
         <ShareButtonTooltip name="Facebook">
           <FacebookShareButton {...shareButtonProps}>
@@ -92,7 +96,7 @@ const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
           <EmailIcon {...shareIconProps} />
         </EmailShareButton>
       </Box>
-    </Stack>
+    </Spacer>
   );
 });
 

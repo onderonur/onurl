@@ -1,12 +1,16 @@
-import { theme as chakraTheme } from '@chakra-ui/core';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-const { colors } = chakraTheme;
-
-const theme = {
-  bg: colors.twitter[200],
-  borderColor: colors.purple[200],
-  color: colors.black[800],
-  placeholderColor: colors.purple[200],
-};
+let theme = createMuiTheme({
+  palette: {
+    background: { paper: '#a0dcff', default: '#a8dcfa' },
+    primary: {
+      main: '#6b46c1',
+    },
+    secondary: {
+      main: '#d53f8c',
+    },
+  },
+});
+theme = responsiveFontSizes(theme);
 
 export default theme;

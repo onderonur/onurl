@@ -1,26 +1,23 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { useCallback, useReducer, useState } from 'react';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { isServer } from '@/utils';
 import { Formik, Form, FormikConfig } from 'formik';
-import {
-  Button,
-  Flex,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  useClipboard,
-  Text,
-  Stack,
-  Box,
-} from '@chakra-ui/core';
 import { Maybe, ShortUrlInput } from '@/types';
-import BaseInput from '@/components/BaseInput';
+import BaseTextField from '@/components/BaseTextField';
 import { ShortUrlData } from '@/api/models/ShortUrl';
 import UrlShortenerSvg from './components/UrlShortenerSvg';
 import ExternalLink from '@/components/ExternalLink';
 import ShareButtons from './components/ShareButtons';
 import UrlQrCode from './components/UrlQrCode';
 import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
+import { Box, InputAdornment, Typography } from '@material-ui/core';
+import LinkIcon from '@material-ui/icons/Link';
+import BaseButton from '@/components/BaseButton';
+import Spacer from '@/components/Spacer';
+import Alert from '@material-ui/lab/Alert';
+import { Bold } from '@/components/StyleUtils';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
@@ -115,13 +112,13 @@ const HomeView = () => {
     : window.location.origin;
   const shortenedUrl = alias ? `${origin}/${alias}` : null;
 
-  const { onCopy, hasCopied } = useClipboard(shortenedUrl);
-
   const { error } = state;
+
+  const [hasCopied, setHasCopied] = useState(false);
 
   return (
     <>
-      <Box flex={1} height="200px">
+      <Box flex={1} height="200px" marginBottom={2}>
         <UrlShortenerSvg />
       </Box>
       <Formik<UrlFormValues>
@@ -134,86 +131,106 @@ const HomeView = () => {
           return (
             <>
               <Form noValidate>
-                <BaseInput
-                  name="url"
-                  label="URL"
-                  isRequired
-                  leftIcon="link"
-                  autoFocus
-                />
-                <BaseInput name="customAlias" label="Custom Alias (Optional)" />
-                <Flex justify="flex-end" mt={4}>
-                  <Button
-                    variantColor="purple"
-                    type="submit"
-                    isLoading={isSubmitting}
-                    isDisabled={!isValid}
-                  >
-                    Submit
-                  </Button>
-                </Flex>
+                <Spacer flexDirection="column" spacing={2}>
+                  <BaseTextField
+                    name="url"
+                    label="URL"
+                    required
+                    autoFocus
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <LinkIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <BaseTextField
+                    name="customAlias"
+                    label="Custom Alias (Optional)"
+                  />
+                  <Box display="flex" justifyContent="flex-end">
+                    <BaseButton
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      loading={isSubmitting}
+                      disabled={!isValid}
+                    >
+                      Submit
+                    </BaseButton>
+                  </Box>
+                </Spacer>
               </Form>
-              <Stack spacing={2} marginY={1}>
+              <Spacer flexDirection="column" spacing={2} marginY={1}>
                 {(data || error) && (
-                  <Alert status={error ? 'error' : 'success'} marginY={2}>
-                    <AlertIcon />
-                    <AlertTitle>
+                  <Box marginY={2}>
+                    <Alert severity={error ? 'error' : 'success'}>
                       {error || 'Your new URL has been created successfully!'}
-                    </AlertTitle>
-                  </Alert>
+                    </Alert>
+                  </Box>
                 )}
                 {url && (
                   <Box>
-                    <Text fontSize="lg">
-                      <Text as="span" fontWeight="bold">
-                        Old URL:
-                      </Text>{' '}
-                      <ExternalLink href={url}>{url}</ExternalLink>
-                    </Text>
-                    <Text fontSize="xs">
-                      <Text as="span" fontWeight="bold">
-                        Old URL Length:
-                      </Text>{' '}
-                      {url.length} characters
-                    </Text>
+                    <Typography noWrap>
+                      <Bold>Old URL:</Bold>{' '}
+                      <ExternalLink href={url} hasIcon>
+                        {url}
+                      </ExternalLink>
+                    </Typography>
+                    <Typography>
+                      <Bold>Old URL Length:</Bold> {url.length} characters
+                    </Typography>
                   </Box>
                 )}
                 {shortenedUrl && (
                   <Box>
-                    <Flex alignItems="center">
-                      <Text fontSize="lg" isTruncated>
-                        <Text as="span" fontWeight="bold">
-                          New URL:
-                        </Text>{' '}
-                        <ExternalLink href={shortenedUrl} marginRight={2}>
+                    <Box display="flex" alignItems="center">
+                      <Typography noWrap>
+                        <Bold>New URL:</Bold>{' '}
+                        <ExternalLink href={shortenedUrl}>
                           {shortenedUrl}
                         </ExternalLink>
-                      </Text>
-                      <Button leftIcon="copy" onClick={onCopy} size="sm">
-                        {hasCopied ? 'Copied' : 'Copy'}
-                      </Button>
-                    </Flex>
-                    <Text fontSize="sm">
+                      </Typography>
+                      <Box marginLeft={1}>
+                        <CopyToClipboard
+                          text={shortenedUrl}
+                          onCopy={() => {
+                            setHasCopied(true);
+                            setTimeout(() => {
+                              setHasCopied(false);
+                            }, 2000);
+                          }}
+                        >
+                          <BaseButton
+                            startIcon={<FileCopyOutlinedIcon />}
+                            size="small"
+                            variant="contained"
+                          >
+                            {hasCopied ? 'Copied' : 'Copy'}
+                          </BaseButton>
+                        </CopyToClipboard>
+                      </Box>
+                    </Box>
+                    <Typography variant="subtitle2" color="textSecondary">
                       Click the link to open it in a new tab
-                    </Text>
-                    <Text fontSize="sm">
-                      <Text as="span" fontWeight="bold">
-                        New URL Length:
-                      </Text>{' '}
-                      {shortenedUrl.length} characters
-                    </Text>
+                    </Typography>
+                    <Typography>
+                      <Bold>New URL Length:</Bold> {shortenedUrl.length}{' '}
+                      characters
+                    </Typography>
                   </Box>
                 )}
                 {shortenedUrl && (
                   <Box maxWidth={qrCodeSize}>
-                    <Text fontSize="lg" fontWeight="bold">
-                      QR Code:
-                    </Text>
+                    <Typography>
+                      <Bold>QR Code:</Bold>
+                    </Typography>
                     <UrlQrCode url={shortenedUrl} size={qrCodeSize} />
                   </Box>
                 )}
                 <ShareButtons url={shortenedUrl} />
-              </Stack>
+              </Spacer>
             </>
           );
         }}
