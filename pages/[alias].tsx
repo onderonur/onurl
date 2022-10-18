@@ -48,7 +48,7 @@ const AliasView: NextPage<AliasViewProps> = ({ error }) => {
   }
 
   return (
-    <Box display="flex" justifyContent="center">
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <CircularProgress />
     </Box>
   );

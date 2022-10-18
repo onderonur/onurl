@@ -1,5 +1,4 @@
 import { NextApiHandler, NextApiRequest } from 'next';
-import withDb from '@/db/withDb';
 import { nanoid } from 'nanoid';
 import handleErrors from '@/error-handling/handleErrors';
 import createApiError from '@/error-handling/createApiError';
@@ -11,6 +10,7 @@ import {
   URL_LIFETIME_IN_MINUTES,
 } from '@/short-url/ShortUrlUtils';
 import { ShortUrlDocument } from '@/db/ShortUrl';
+import connectToDb from '@/db/connectToDb';
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -69,7 +69,7 @@ const extractPostInput = async (req: NextApiRequest) => {
 };
 
 const handler: NextApiHandler = async (req, res) => {
-  const models = req.models;
+  const models = await connectToDb();
   if (!models) {
     throw createApiError(500, 'Could not find db connection');
   }
@@ -107,4 +107,4 @@ const handler: NextApiHandler = async (req, res) => {
   }
 };
 
-export default handleErrors(withDb(handler));
+export default handleErrors(handler);

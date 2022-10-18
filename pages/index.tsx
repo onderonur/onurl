@@ -112,7 +112,7 @@ function HomeView() {
 
   return (
     <Stack direction="column" spacing={4}>
-      <Box height="200px">
+      <Box sx={{ height: '200px' }}>
         <UrlShortenerLogo />
       </Box>
       <Typography
@@ -154,7 +154,7 @@ function HomeView() {
                     name="customAlias"
                     label="Custom Alias (Optional)"
                   />
-                  <Box display="flex" justifyContent="flex-end">
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <BaseButton
                       type="submit"
                       color="primary"
@@ -167,9 +167,9 @@ function HomeView() {
                   </Box>
                 </Stack>
               </Form>
-              <Stack direction="column" spacing={2} marginY={1}>
+              <Stack direction="column" spacing={2} sx={{ marginY: 1 }}>
                 {(data || error) && (
-                  <Box marginY={2}>
+                  <Box sx={{ marginY: 2 }}>
                     <Alert severity={error ? 'error' : 'success'}>
                       {error || 'Your new URL has been created successfully!'}
                     </Alert>
@@ -190,14 +190,14 @@ function HomeView() {
                 )}
                 {shortenedUrl && (
                   <Box>
-                    <Box display="flex" alignItems="center">
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Typography noWrap>
                         <Bold>New URL:</Bold>{' '}
                         <ExternalLink href={shortenedUrl}>
                           {shortenedUrl}
                         </ExternalLink>
                       </Typography>
-                      <Box marginLeft={1}>
+                      <Box sx={{ marginLeft: 1 }}>
                         <CopyToClipboard
                           text={shortenedUrl}
                           onCopy={() => {
@@ -227,7 +227,7 @@ function HomeView() {
                   </Box>
                 )}
                 {shortenedUrl && (
-                  <Box maxWidth={qrCodeSize}>
+                  <Box sx={{ maxWidth: qrCodeSize }}>
                     <Typography>
                       <Bold>QR Code:</Bold>
                     </Typography>

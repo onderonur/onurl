@@ -43,7 +43,11 @@ function ShareButtons({ url }: ShareButtonsProps) {
   }
 
   return (
-    <Stack direction="row" spacing={2} flexWrap="wrap" justifyContent="center">
+    <Stack
+      direction="row"
+      spacing={2}
+      sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
+    >
       <Box>
         <ShareButtonTooltip name="Facebook">
           <FacebookShareButton {...shareButtonProps}>

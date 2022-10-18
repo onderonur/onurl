@@ -35,7 +35,7 @@ type LayoutProps = React.PropsWithChildren<{}>;
 
 function Layout({ children }: LayoutProps) {
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh">
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <AppBar
         variant="outlined"
         elevation={0}
@@ -48,7 +48,7 @@ function Layout({ children }: LayoutProps) {
               <Bold>{APP_TITLE}</Bold>
             </TitleLink>
           </NextLink>
-          <Box flexGrow={1} />
+          <Box sx={{ flexGrow: 1 }} />
           <IconButton
             component={ExternalLink}
             href="https://github.com/onderonur/onurl"
@@ -63,9 +63,11 @@ function Layout({ children }: LayoutProps) {
       </MainContent>
       <Divider />
       <Box
-        display="flex"
-        padding={1}
-        justifyContent="flex-end"
+        sx={{
+          display: 'flex',
+          padding: 1,
+          justifyContent: 'flex-end',
+        }}
         component="footer"
       >
         <Stack direction="row" spacing={1}>
