@@ -1,40 +1,53 @@
 import '@/common/CommonTypes';
-import mongoose from 'mongoose';
 import { Maybe } from '@/common/CommonTypes';
+import mongoose from 'mongoose';
 import ShortUrl from './ShortUrl';
 
 const models = {
   ShortUrl,
 };
 
-const readyStates = {
-  disconnected: 0,
-  connected: 1,
-  connecting: 2,
-  disconnecting: 3,
-};
+const DATABASE_URL = process.env.DATABASE_URL;
 
-let pendingPromise: Maybe<Promise<typeof mongoose>> = null;
+if (!DATABASE_URL) {
+  throw new Error('Please define the DATABASE_URL environment variable');
+}
 
+declare global {
+  // eslint-disable-next-line no-var
+  var db: {
+    conn: Maybe<typeof mongoose>;
+    promise: Maybe<Promise<typeof mongoose>>;
+  };
+}
+
+/**
+ * Global is used here to maintain a cached connection across hot reloads
+ * in development. This prevents connections growing exponentially
+ * during API Route usage.
+ */
+let cached = global.db;
+
+if (!cached) {
+  global.db = { conn: null, promise: null };
+  cached = global.db;
+}
+
+// https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js
 async function connectToDb() {
-  const { readyState } = mongoose.connection;
-
-  // TODO: May need to handle concurrent requests
-  // with a little bit more details (disconnecting, disconnected etc).
-  if (readyState === readyStates.connected) {
-    return models;
-  } else if (pendingPromise) {
-    // Wait for the already pending promise if there is one.
-    await pendingPromise;
+  if (cached.conn) {
     return models;
   }
 
-  pendingPromise = mongoose.connect(process.env.DATABASE_URL);
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(DATABASE_URL, { bufferCommands: false });
+  }
 
   try {
-    await pendingPromise;
-  } finally {
-    pendingPromise = null;
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
   }
 
   return models;
