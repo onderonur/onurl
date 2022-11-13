@@ -23,5 +23,4 @@ export const shortUrlInputSchema = Yup.object({
     .default(''),
 });
 
-// https://github.com/jquense/yup/blob/master/docs/typescript.md
-export type ShortUrlInput = Yup.TypeOf<typeof shortUrlInputSchema>;
+export type ShortUrlInput = Yup.InferType<typeof shortUrlInputSchema>;

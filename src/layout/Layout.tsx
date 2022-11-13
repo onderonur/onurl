@@ -31,7 +31,7 @@ const MainContent = styled('main')(({ theme }) => ({
   padding: theme.spacing(4),
 }));
 
-type LayoutProps = React.PropsWithChildren<{}>;
+type LayoutProps = React.PropsWithChildren;
 
 function Layout({ children }: LayoutProps) {
   return (
@@ -43,11 +43,9 @@ function Layout({ children }: LayoutProps) {
         color="inherit"
       >
         <Toolbar>
-          <NextLink href="/" passHref>
-            <TitleLink variant="h6" color="primary">
-              <Bold>{APP_TITLE}</Bold>
-            </TitleLink>
-          </NextLink>
+          <TitleLink variant="h6" color="primary" as={NextLink} href="/">
+            <Bold>{APP_TITLE}</Bold>
+          </TitleLink>
           <Box sx={{ flexGrow: 1 }} />
           <IconButton
             component={ExternalLink}
