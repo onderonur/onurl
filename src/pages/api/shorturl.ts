@@ -74,7 +74,7 @@ const handler: NextApiHandler = async (req, res) => {
     throw createApiError(500, 'Could not find db connection');
   }
   switch (req.method) {
-    case 'GET':
+    case 'GET': {
       const alias = await extractGetInput(req);
       const shortUrl = await models.ShortUrl.findOneAndUpdate(
         { alias },
@@ -93,7 +93,8 @@ const handler: NextApiHandler = async (req, res) => {
 
       res.json(shortUrl);
       break;
-    case 'POST':
+    }
+    case 'POST': {
       const { url, customAlias } = await extractPostInput(req);
       const shortened = new models.ShortUrl({
         url,
@@ -102,6 +103,7 @@ const handler: NextApiHandler = async (req, res) => {
       await shortened.save();
       res.json(shortened);
       break;
+    }
     default:
       throw createApiError(405, 'Method Not Allowed');
   }

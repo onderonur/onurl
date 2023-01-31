@@ -55,7 +55,7 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, data: undefined, error: undefined };
     case 'success':
       return { ...state, data: action.response.data };
-    case 'error':
+    case 'error': {
       const { error } = action;
       let errorMessage = error.message;
       if (isAxiosError(error)) {
@@ -65,6 +65,7 @@ const reducer = (state: State, action: Action): State => {
         ...state,
         error: errorMessage,
       };
+    }
     default:
       throw new Error();
   }

@@ -1,29 +1,12 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "react-app"
+    // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
+    "plugin:prettier/recommended",
+    "next/core-web-vitals"
   ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "@typescript-eslint", "prettier", "deprecation"],
+  "plugins": ["deprecation"],
   // For eslint-plugin-deprecation:
   // https://stackoverflow.com/a/64488474/10876256
   "overrides": [
@@ -38,17 +21,12 @@
   "rules": {
     "prettier/prettier": "warn",
     "deprecation/deprecation": "warn",
-    "no-unused-vars": "warn",
-    "no-case-declarations": "off",
-    "no-empty": "off",
-    "prefer-const": "warn",
     "no-console": "warn",
-    "react/prop-types": "off",
-    "react/display-name": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/no-empty-interface": "warn",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-alert": "warn",
+    "prefer-destructuring": "warn",
+    "prefer-const": "warn",
+    "object-shorthand": "warn",
+    "curly": "warn",
     "@typescript-eslint/ban-types": "off"
   }
 }

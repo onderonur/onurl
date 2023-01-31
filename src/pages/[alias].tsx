@@ -76,7 +76,9 @@ AliasView.getInitialProps = async ({ res, query }) => {
     if (isAxiosError(err)) {
       const data = err.response?.data;
       if (data) {
+        // eslint-disable-next-line prefer-destructuring
         statusCode = data.statusCode;
+        // eslint-disable-next-line prefer-destructuring
         message = data.message;
       }
     }

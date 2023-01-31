@@ -10,7 +10,9 @@ const handleErrors =
       let statusCode = 500;
       let message = 'Oops, something went wrong!';
       if (err instanceof ApiError) {
+        // eslint-disable-next-line prefer-destructuring
         statusCode = err.statusCode;
+        // eslint-disable-next-line prefer-destructuring
         message = err.message;
       }
       res.status(statusCode).json({ statusCode, message });
