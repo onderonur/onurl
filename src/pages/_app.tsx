@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppProps } from 'next/app';
 import Layout from '@/layout/Layout';
 import BaseThemeProvider from '@/theme/BaseThemeProvider';

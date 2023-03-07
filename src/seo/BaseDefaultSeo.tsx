@@ -1,4 +1,3 @@
-import React from 'react';
 import { APP_TITLE } from '@/common/CommonUtils';
 import { DefaultSeoProps, DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/router';

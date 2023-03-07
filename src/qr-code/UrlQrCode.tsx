@@ -1,4 +1,3 @@
-import React from 'react';
 import { QRCodeSVG, QRCodeCanvas } from 'qrcode.react';
 import { saveAs } from 'file-saver';
 import { Box, styled } from '@mui/material';

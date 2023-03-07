@@ -9,8 +9,10 @@ import {
   DEFAULT_ALIAS_LENGTH,
   URL_LIFETIME_IN_MINUTES,
 } from '@/short-url/ShortUrlUtils';
-import { ShortUrlDocument } from '@/db/ShortUrl';
+import { ShortUrl } from '@prisma/client';
 import connectToDb from '@/db/connectToDb';
+import { goTry } from 'go-try';
+import { isUniqueConstraintError } from '@/db/DbUtils';
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -29,12 +31,10 @@ const extractGetInput = async (req: NextApiRequest) => {
   return alias;
 };
 
-const isShortUrlExpired = (shortUrl: ShortUrlDocument) => {
+const isShortUrlExpired = (shortUrl: ShortUrl) => {
   const now = Date.now();
   const urlExpiresAt =
-    new Date(shortUrl.createdAt).getTime() +
-    URL_LIFETIME_IN_MINUTES * 60 * 1000;
-
+    shortUrl.createdAt.getTime() + URL_LIFETIME_IN_MINUTES * 60 * 1000;
   return now >= urlExpiresAt;
 };
 
@@ -69,19 +69,15 @@ const extractPostInput = async (req: NextApiRequest) => {
 };
 
 const handler: NextApiHandler = async (req, res) => {
-  const models = await connectToDb();
-  if (!models) {
-    throw createApiError(500, 'Could not find db connection');
-  }
+  const prisma = await connectToDb();
+
   switch (req.method) {
     case 'GET': {
       const alias = await extractGetInput(req);
-      const shortUrl = await models.ShortUrl.findOneAndUpdate(
-        { alias },
-        { $inc: { clicks: 1 } },
-        // To get the updated doc
-        { new: true },
-      );
+
+      let shortUrl = await prisma.shortUrl.findFirst({
+        where: { alias },
+      });
 
       if (!shortUrl) {
         throw createApiError(404, 'URL not found');
@@ -91,17 +87,39 @@ const handler: NextApiHandler = async (req, res) => {
         throw createApiError(404, 'URL is expired');
       }
 
+      shortUrl = await prisma.shortUrl.update({
+        where: { alias },
+        data: { clicks: shortUrl.clicks + 1 },
+      });
+
       res.json(shortUrl);
       break;
     }
     case 'POST': {
       const { url, customAlias } = await extractPostInput(req);
-      const shortened = new models.ShortUrl({
-        url,
-        alias: customAlias || nanoid(DEFAULT_ALIAS_LENGTH),
-      });
-      await shortened.save();
-      res.json(shortened);
+
+      const [err, shortUrl] = await goTry(() =>
+        prisma.shortUrl.create({
+          data: {
+            url,
+            alias: customAlias || nanoid(DEFAULT_ALIAS_LENGTH),
+            clicks: 0,
+          },
+        }),
+      );
+
+      if (err) {
+        if (isUniqueConstraintError(err)) {
+          throw createApiError(
+            422,
+            `"${customAlias}" is already in use. Please use another alias.`,
+          );
+        }
+
+        throw err;
+      }
+
+      res.json(shortUrl);
       break;
     }
     default:

@@ -1,8 +1,7 @@
-import React, { useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { Maybe } from '@/common/CommonTypes';
 import BaseTextField from '@/common/BaseTextField';
-import { ShortUrlData } from '@/db/ShortUrl';
 import UrlShortenerLogo from '@/common/UrlShortenerLogo';
 import ExternalLink from '@/common/ExternalLink';
 import ShareButtons from '@/social-share/ShareButtons';
@@ -22,11 +21,12 @@ import { Stack } from '@mui/material';
 import { isAxiosError } from '@/error-handling/ErrorHandlingUtils';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ShortUrl } from '@prisma/client';
 
 const qrCodeSize = 256;
 
 interface State {
-  data: Maybe<ShortUrlData>;
+  data: Maybe<ShortUrl>;
   error: Maybe<string>;
 }
 

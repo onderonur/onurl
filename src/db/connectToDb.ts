@@ -1,11 +1,6 @@
 import '@/common/CommonTypes';
 import { Maybe } from '@/common/CommonTypes';
-import mongoose from 'mongoose';
-import ShortUrl from './ShortUrl';
-
-const models = {
-  ShortUrl,
-};
+import { PrismaClient } from '@prisma/client';
 
 const { DATABASE_URL } = process.env;
 
@@ -16,41 +11,23 @@ if (!DATABASE_URL) {
 declare global {
   // eslint-disable-next-line no-var
   var db: {
-    conn: Maybe<typeof mongoose>;
-    promise: Maybe<Promise<typeof mongoose>>;
+    prisma: PrismaClient;
+    promise: Maybe<Promise<void>>;
   };
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentially
- * during API Route usage.
- */
-let cached = global.db;
-
-if (!cached) {
-  global.db = { conn: null, promise: null };
-  cached = global.db;
-}
-
-// https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js
 async function connectToDb() {
-  if (cached.conn) {
-    return models;
+  if (!global.db) {
+    global.db = { prisma: new PrismaClient(), promise: null };
   }
 
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(DATABASE_URL, { bufferCommands: false });
+  if (!global.db.promise) {
+    global.db.promise = global.db.prisma.$connect();
   }
 
-  try {
-    cached.conn = await cached.promise;
-  } catch (e) {
-    cached.promise = null;
-    throw e;
-  }
+  await global.db.promise;
 
-  return models;
+  return global.db.prisma;
 }
 
 export default connectToDb;

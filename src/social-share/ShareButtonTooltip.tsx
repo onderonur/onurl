@@ -1,5 +1,4 @@
 import { Tooltip, TooltipProps } from '@mui/material';
-import React from 'react';
 
 type ShareButtonTooltipProps = Pick<TooltipProps, 'children'> & {
   name: string;

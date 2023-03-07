@@ -1,4 +1,3 @@
-import React from 'react';
 import { NextPage } from 'next';
 import { Maybe } from '@/common/CommonTypes';
 import { ServerResponse } from 'http';
