@@ -12,7 +12,7 @@ import BaseButton from '@/common/BaseButton';
 import { Bold } from '@/common/StyleUtils';
 import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { APP_TITLE, IS_SERVER } from '@/common/CommonUtils';
+import { APP_TITLE } from '@/common/CommonUtils';
 import {
   shortUrlInputSchema,
   URL_LIFETIME_IN_MINUTES,
@@ -82,10 +82,8 @@ function HomeView() {
   const { data } = state;
   const url = data?.url;
   const alias = data?.alias;
-  const origin = IS_SERVER
-    ? process.env.NEXT_PUBLIC_BASE_URL
-    : window.location.origin;
-  const shortenedUrl = alias ? `${origin}/${alias}` : null;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const shortenedUrl = alias ? `${baseUrl}/${alias}` : null;
 
   const { error } = state;
 

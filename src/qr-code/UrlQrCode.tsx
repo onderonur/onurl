@@ -12,7 +12,7 @@ const handleSaveQrCode = async () => {
   // eslint-disable-next-line prefer-destructuring
   const canvas = canvasContainer.getElementsByTagName('canvas')[0];
   const png = canvas?.toDataURL();
-  saveAs(png, `${APP_TITLE}-QRCode-${Date.now}`);
+  saveAs(png, `${APP_TITLE}-QRCode-${Date.now()}`);
 };
 
 const StyledQRCodeSVG = styled(QRCodeSVG)({

@@ -1,7 +1,8 @@
 import * as Yup from 'yup';
 import validator from 'validator';
+import { ShortUrl } from '@prisma/client';
 
-export const MAX_CUSTOM_ALIAS_LENGTH = 30;
+const MAX_CUSTOM_ALIAS_LENGTH = 30;
 export const DEFAULT_ALIAS_LENGTH = 10;
 export const URL_LIFETIME_IN_MINUTES = 5;
 
@@ -23,4 +24,9 @@ export const shortUrlInputSchema = Yup.object({
     .default(''),
 });
 
-export type ShortUrlInput = Yup.InferType<typeof shortUrlInputSchema>;
+export const isShortUrlExpired = (shortUrl: ShortUrl) => {
+  const now = Date.now();
+  const urlExpiresAt =
+    shortUrl.createdAt.getTime() + URL_LIFETIME_IN_MINUTES * 60 * 1000;
+  return now >= urlExpiresAt;
+};
