@@ -1,28 +1,28 @@
-import React from 'react';
-import { Link, LinkProps, styled } from '@mui/material';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import BaseLink, { BaseLinkProps } from './BaseLink';
+import { FiExternalLink } from 'react-icons/fi';
+import classNames from 'classnames';
 
-const LinkIcon = styled(ExitToAppIcon)({
-  verticalAlign: 'text-bottom',
-});
+type ExternalLinkProps = BaseLinkProps & {
+  hasIcon?: boolean;
+};
 
-type ExternalLinkProps = LinkProps & { hasIcon?: boolean };
-
-const ExternalLink: React.FC<ExternalLinkProps> = React.forwardRef<
-  React.ComponentRef<typeof Link>,
-  ExternalLinkProps
->(function ExternalLink({ children, href, hasIcon, ...rest }, ref) {
+export default function ExternalLink({
+  className,
+  href,
+  hasIcon,
+  children,
+  ...rest
+}: ExternalLinkProps) {
   return (
-    <Link
-      ref={ref}
+    <BaseLink
       {...rest}
+      className={classNames(className, 'inline-flex items-center gap-1')}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
     >
-      {children} {hasIcon && <LinkIcon fontSize="small" />}
-    </Link>
+      {children}
+      {hasIcon && <FiExternalLink className="h-4 w-4" />}
+    </BaseLink>
   );
-});
-
-export default ExternalLink;
+}

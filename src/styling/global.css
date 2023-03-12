@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* fluid font-size: 14px - 16px for 640px - 1024px viewport */
+    font-size: clamp(0.875rem, 0.667rem + 0.52vw, 1rem);
+  }
+}

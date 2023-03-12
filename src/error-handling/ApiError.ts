@@ -1,5 +1,5 @@
 // https://github.com/zeit/micro#error-handling
-class ApiError extends Error {
+export default class ApiError extends Error {
   public statusCode: number;
 
   constructor(statusCode: number, message: string) {
@@ -7,5 +7,3 @@ class ApiError extends Error {
     this.statusCode = statusCode;
   }
 }
-
-export default ApiError;

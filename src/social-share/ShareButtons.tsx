@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -15,22 +15,13 @@ import {
   MailruShareButton,
   MailruIcon,
 } from 'react-share';
-import ShareButtonTooltip from './ShareButtonTooltip';
 import { Maybe } from '@/common/CommonTypes';
-import { Box, Stack } from '@mui/material';
 
-interface ShareButtonsProps {
+type ShareButtonsProps = {
   url: Maybe<string>;
-}
+};
 
-function ShareButtons({ url }: ShareButtonsProps) {
-  const shareButtonProps = useMemo(
-    () => ({
-      url: url || '',
-    }),
-    [url],
-  );
-
+export default function ShareButtons({ url }: ShareButtonsProps) {
   const shareIconSize = '3.2rem';
 
   const shareIconProps = useMemo(
@@ -38,65 +29,43 @@ function ShareButtons({ url }: ShareButtonsProps) {
     [shareIconSize],
   );
 
+  const getShareButtonProps = useCallback(
+    (name: string) => {
+      return {
+        'aria-label': `Share on ${name}`,
+        url: url || '',
+      };
+    },
+    [url],
+  );
+
   if (!url) {
     return null;
   }
 
   return (
-    <Stack
-      direction="row"
-      spacing={2}
-      sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
-    >
-      <Box>
-        <ShareButtonTooltip name="Facebook">
-          <FacebookShareButton {...shareButtonProps}>
-            <FacebookIcon {...shareIconProps} />
-          </FacebookShareButton>
-        </ShareButtonTooltip>
-      </Box>
-      <Box>
-        <ShareButtonTooltip name="Twitter">
-          <TwitterShareButton {...shareButtonProps}>
-            <TwitterIcon {...shareIconProps} />
-          </TwitterShareButton>
-        </ShareButtonTooltip>
-      </Box>
-      <Box>
-        <ShareButtonTooltip name="Reddit">
-          <RedditShareButton {...shareButtonProps}>
-            <RedditIcon {...shareIconProps} />
-          </RedditShareButton>
-        </ShareButtonTooltip>
-      </Box>
-      <Box>
-        <ShareButtonTooltip name="Tumblr">
-          <TumblrShareButton {...shareButtonProps}>
-            <TumblrIcon {...shareIconProps} />
-          </TumblrShareButton>
-        </ShareButtonTooltip>
-      </Box>
-      <Box>
-        <ShareButtonTooltip name="Linkedin">
-          <LinkedinShareButton {...shareButtonProps}>
-            <LinkedinIcon {...shareIconProps} />
-          </LinkedinShareButton>
-        </ShareButtonTooltip>
-      </Box>
-      <Box>
-        <ShareButtonTooltip name="Mail.Ru">
-          <MailruShareButton {...shareButtonProps}>
-            <MailruIcon {...shareIconProps} />
-          </MailruShareButton>
-        </ShareButtonTooltip>
-      </Box>
-      <Box>
-        <EmailShareButton {...shareButtonProps}>
-          <EmailIcon {...shareIconProps} />
-        </EmailShareButton>
-      </Box>
-    </Stack>
+    <div className="flex flex-wrap gap-2 justify-center">
+      <FacebookShareButton {...getShareButtonProps('Facebook')}>
+        <FacebookIcon {...shareIconProps} />
+      </FacebookShareButton>
+      <TwitterShareButton {...getShareButtonProps('Twitter')}>
+        <TwitterIcon {...shareIconProps} />
+      </TwitterShareButton>
+      <RedditShareButton {...getShareButtonProps('Reddit')}>
+        <RedditIcon {...shareIconProps} />
+      </RedditShareButton>
+      <TumblrShareButton {...getShareButtonProps('Tumblr')}>
+        <TumblrIcon {...shareIconProps} />
+      </TumblrShareButton>
+      <LinkedinShareButton {...getShareButtonProps('LinkedIn')}>
+        <LinkedinIcon {...shareIconProps} />
+      </LinkedinShareButton>
+      <MailruShareButton {...getShareButtonProps('Mail.Ru')}>
+        <MailruIcon {...shareIconProps} />
+      </MailruShareButton>
+      <EmailShareButton {...getShareButtonProps('E-mail')}>
+        <EmailIcon {...shareIconProps} />
+      </EmailShareButton>
+    </div>
   );
 }
-
-export default ShareButtons;

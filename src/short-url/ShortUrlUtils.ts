@@ -1,28 +1,26 @@
-import * as Yup from 'yup';
-import validator from 'validator';
 import { ShortUrl } from '@prisma/client';
+import { z } from 'zod';
 
 const MAX_CUSTOM_ALIAS_LENGTH = 30;
 export const DEFAULT_ALIAS_LENGTH = 10;
 export const URL_LIFETIME_IN_MINUTES = 5;
 
-export const shortUrlInputSchema = Yup.object({
-  url: Yup.string()
-    .label('URL')
-    .required()
-    .test(
-      'is-url',
-      ({ label }) => `${label} does not have a valid URL format`,
-      (value) => (value ? validator.isURL(value) : true),
-    )
+export const shortUrlInputSchema = z.object({
+  url: z.string().trim().url({ message: 'URL does not have a valid format' }),
+  customAlias: z
+    .string()
     .trim()
-    .default(''),
-  customAlias: Yup.string()
-    .label('Custom Alias')
-    .max(MAX_CUSTOM_ALIAS_LENGTH)
-    .trim()
-    .default(''),
+    .max(MAX_CUSTOM_ALIAS_LENGTH, {
+      message: `Max custom alias length is ${MAX_CUSTOM_ALIAS_LENGTH}`,
+    }),
 });
+
+type ShortUrlInput = z.infer<typeof shortUrlInputSchema>;
+
+export const defaultShortUrlInput: ShortUrlInput = {
+  url: '',
+  customAlias: '',
+};
 
 export const isShortUrlExpired = (shortUrl: ShortUrl) => {
   const now = Date.now();

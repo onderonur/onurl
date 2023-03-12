@@ -1,22 +1,23 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { goTry } from 'go-try';
+import { NextRequest, NextResponse } from 'next/server';
 import ApiError from './ApiError';
 
 // https://github.com/zeit/micro#error-handling
 const handleErrors =
-  (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
-    try {
-      return await fn(req, res);
-    } catch (err) {
+  (handler: (request: NextRequest) => Promise<NextResponse>) =>
+  async (request: NextRequest) => {
+    const [err, response] = await goTry(async () => await handler(request));
+
+    if (err) {
       let statusCode = 500;
       let message = 'Oops, something went wrong!';
       if (err instanceof ApiError) {
-        // eslint-disable-next-line prefer-destructuring
-        statusCode = err.statusCode;
-        // eslint-disable-next-line prefer-destructuring
-        message = err.message;
+        ({ statusCode, message } = err);
       }
-      res.status(statusCode).json({ statusCode, message });
+      return NextResponse.json({ statusCode, message }, { status: statusCode });
     }
+
+    return response;
   };
 
 export default handleErrors;

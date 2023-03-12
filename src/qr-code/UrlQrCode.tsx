@@ -1,9 +1,8 @@
 import { QRCodeSVG, QRCodeCanvas } from 'qrcode.react';
 import { saveAs } from 'file-saver';
-import { Box, styled } from '@mui/material';
-import BaseButton from '@/common/BaseButton';
-import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined';
 import { APP_TITLE } from '@/common/CommonUtils';
+import Button from '@/common/Button';
+import { AiOutlineCloudDownload } from 'react-icons/ai';
 
 const qrCodeId = 'qrCode';
 
@@ -15,38 +14,29 @@ const handleSaveQrCode = async () => {
   saveAs(png, `${APP_TITLE}-QRCode-${Date.now()}`);
 };
 
-const StyledQRCodeSVG = styled(QRCodeSVG)({
-  width: '100%',
-  height: '100%',
-});
-
-interface UrlQrCodeProps {
+type UrlQrCodeProps = {
   url: string;
   size: number;
-}
+};
 
-function UrlQrCode({ url, size }: UrlQrCodeProps) {
+export default function UrlQrCode({ url, size }: UrlQrCodeProps) {
   return (
     <>
-      <StyledQRCodeSVG value={url} />
+      <QRCodeSVG className="h-full w-full" value={url} />
       {/* 
         This hidden qr code is just used to download it easily.
         Converting the svg to png or jpeg and then downloading didn't work for now. 
       */}
-      <Box id={qrCodeId} hidden>
+      <div id={qrCodeId} hidden>
         <QRCodeCanvas value={url} size={size * 2} />
-      </Box>
-      <BaseButton
-        startIcon={<CloudDownloadOutlinedIcon />}
-        variant="contained"
-        color="secondary"
+      </div>
+      <Button
+        className="w-full mt-1"
+        startIcon={<AiOutlineCloudDownload />}
         onClick={handleSaveQrCode}
-        sx={{ width: '100%' }}
       >
         Save
-      </BaseButton>
+      </Button>
     </>
   );
 }
-
-export default UrlQrCode;
