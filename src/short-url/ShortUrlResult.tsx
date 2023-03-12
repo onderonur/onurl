@@ -38,7 +38,7 @@ export default function ShortUrlResult({
         message="Your new URL has been created successfully!"
       />
       <div>
-        <p className="whitespace-nowrap text-ellipsis overflow-hidden">
+        <p>
           <span className="font-semibold">Old URL:</span>{' '}
           <ExternalLink href={url} hasIcon>
             {url}
@@ -51,7 +51,7 @@ export default function ShortUrlResult({
       </div>
       <div>
         <div className="flex items-center">
-          <p className="whitespace-nowrap text-ellipsis overflow-hidden">
+          <p>
             <span className="font-semibold">New URL:</span>{' '}
             <ExternalLink href={shortenedUrl}>{shortenedUrl}</ExternalLink>
           </p>
