@@ -13,22 +13,10 @@ const title = APP_TITLE;
 const description = `${APP_TITLE} is a URL shortener which makes it easy to shorten and share your short URLs.`;
 const images = [
   {
-    url: `/logo_400.png`,
-    height: 400,
-    width: 400,
-    alt: `${APP_TITLE} large logo`,
-  },
-  {
-    url: `/logo_200.png`,
-    height: 200,
-    width: 200,
-    alt: `${APP_TITLE} medium logo`,
-  },
-  {
-    url: `/logo_80.png`,
-    height: 80,
-    width: 80,
-    alt: `${APP_TITLE} small logo`,
+    url: `/og-image.jpg`,
+    height: 630,
+    width: 1200,
+    alt: `${APP_TITLE} logo`,
   },
 ];
 
