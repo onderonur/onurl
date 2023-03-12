@@ -24,7 +24,7 @@ export default function Button({
       type={type}
       className={classNames(
         className,
-        'relative flex items-center justify-center font-semibold rounded-sm transition-colors',
+        'relative inline-flex items-center justify-center font-semibold rounded-sm transition-colors',
         size === 'default'
           ? 'px-4 py-2 gap-2'
           : size === 'small'

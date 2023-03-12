@@ -38,7 +38,7 @@ export default function ShortUrlResult({
         message="Your new URL has been created successfully!"
       />
       <div>
-        <p>
+        <p className="break-words">
           <span className="font-semibold">Old URL:</span>{' '}
           <ExternalLink href={url} hasIcon>
             {url}
@@ -50,27 +50,23 @@ export default function ShortUrlResult({
         </p>
       </div>
       <div>
-        <div className="flex items-center">
-          <p>
-            <span className="font-semibold">New URL:</span>{' '}
-            <ExternalLink href={shortenedUrl}>{shortenedUrl}</ExternalLink>
-          </p>
-          <div className="ml-1">
-            <CopyToClipboard
-              text={shortenedUrl}
-              onCopy={() => {
-                setHasCopied(true);
-                setTimeout(() => {
-                  setHasCopied(false);
-                }, 2000);
-              }}
-            >
-              <Button startIcon={<AiOutlineCopy />} size="small">
-                {hasCopied ? 'Copied' : 'Copy'}
-              </Button>
-            </CopyToClipboard>
-          </div>
-        </div>
+        <p className="break-words">
+          <span className="font-semibold">New URL:</span>{' '}
+          <ExternalLink href={shortenedUrl}>{shortenedUrl}</ExternalLink>
+          <CopyToClipboard
+            text={shortenedUrl}
+            onCopy={() => {
+              setHasCopied(true);
+              setTimeout(() => {
+                setHasCopied(false);
+              }, 2000);
+            }}
+          >
+            <Button className="ml-1" startIcon={<AiOutlineCopy />} size="small">
+              {hasCopied ? 'Copied' : 'Copy'}
+            </Button>
+          </CopyToClipboard>
+        </p>
         <p>
           <span className="font-semibold">New URL Length:</span>{' '}
           {shortenedUrl.length} characters
