@@ -12,7 +12,6 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.now.sh/)**.
 - Form Validations: [Yup](https://github.com/jquense/yup)
 - Icons: [Material Icons](https://material-ui.com/components/material-icons/)
 - Social Media Share Buttons: [react-share](https://github.com/nygardk/react-share)
-- SEO: [Next SEO](https://github.com/garmeeh/next-seo)
 - Database: [MongoDB](https://www.mongodb.com/)
 - ODM: [Prisma](https://www.prisma.io/)
 - Illustrations: [unDraw](https://undraw.co/)
