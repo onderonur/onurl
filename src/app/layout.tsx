@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import Layout from '@/layout/Layout';
 import { APP_TITLE } from '@/common/CommonUtils';
+import classNames from 'classnames';
 import '@/styling/global.css';
 
 const inter = Inter({
@@ -36,6 +37,7 @@ export const metadata = {
     url: '/',
     description,
     siteName: APP_TITLE,
+    locale: 'en_US',
     images,
   },
   twitter: {
@@ -53,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} font-sans`}>
+    <html lang="en" className={classNames(inter.variable, 'font-sans')}>
       <body className="bg-background-200">
         <Layout>{children}</Layout>
       </body>
