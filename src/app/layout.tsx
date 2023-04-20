@@ -12,14 +12,6 @@ const inter = Inter({
 
 const title = APP_TITLE;
 const description = `${APP_TITLE} is a URL shortener which makes it easy to shorten and share your short URLs.`;
-const images = [
-  {
-    url: `/og-image.jpg`,
-    height: 630,
-    width: 1200,
-    alt: `${APP_TITLE} logo`,
-  },
-];
 
 export const metadata = {
   title,
@@ -38,14 +30,12 @@ export const metadata = {
     description,
     siteName: APP_TITLE,
     locale: 'en_US',
-    images,
   },
   twitter: {
     card: 'summary_large_image',
     title: APP_TITLE,
     description,
     creator: '@onderonur_',
-    images,
   },
 };
 

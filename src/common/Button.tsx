@@ -17,24 +17,21 @@ export default function Button({
   children,
   ...rest
 }: ButtonProps) {
-  const isDisabled = disabled || isLoading;
-
   return (
     <button
       type={type}
       className={classNames(
         className,
         'relative inline-flex items-center justify-center font-semibold rounded-sm transition-colors',
+        'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
+        'disabled:bg-disabled-300 disabled:text-disabled-400',
         size === 'default'
           ? 'px-4 py-2 gap-2'
           : size === 'small'
           ? 'px-2 py-1 text-sm gap-1'
           : null,
-        isDisabled
-          ? 'bg-disabled-300 text-disabled-500'
-          : 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
       )}
-      disabled={isDisabled}
+      disabled={disabled || isLoading}
       {...rest}
     >
       {startIcon && (
