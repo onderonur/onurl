@@ -1,7 +1,7 @@
 import { QRCodeSVG, QRCodeCanvas } from 'qrcode.react';
 import { saveAs } from 'file-saver';
-import { APP_TITLE } from '@/common/CommonUtils';
-import Button from '@/common/Button';
+import { APP_TITLE } from '@/common/common-utils';
+import Button from '@/common/button';
 import { AiOutlineCloudDownload } from 'react-icons/ai';
 
 const qrCodeId = 'qrCode';

@@ -1,4 +1,4 @@
-import BaseLink, { BaseLinkProps } from './BaseLink';
+import BaseLink, { BaseLinkProps } from './base-link';
 import { FiExternalLink } from 'react-icons/fi';
 
 type ExternalLinkProps = BaseLinkProps & {

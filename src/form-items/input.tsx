@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { useFormControl } from './FormControlContext';
+import { useFormControl } from './form-control-context';
 
 type InputProps = React.ComponentProps<'input'>;
 

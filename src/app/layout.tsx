@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google';
-import Layout from '@/layout/Layout';
-import { APP_TITLE } from '@/common/CommonUtils';
+import Layout from '@/layout/layout';
+import { APP_TITLE } from '@/common/common-utils';
 import classNames from 'classnames';
-import '@/styling/global.css';
+import '@/styles/global.css';
 
 const inter = Inter({
   variable: '--font-inter',

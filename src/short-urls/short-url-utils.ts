@@ -19,12 +19,7 @@ export const shortUrlInputSchema = z.object({
     }),
 });
 
-type ShortUrlInput = z.infer<typeof shortUrlInputSchema>;
-
-export const defaultShortUrlInput: ShortUrlInput = {
-  url: '',
-  customAlias: '',
-};
+export type ShortUrlInput = z.infer<typeof shortUrlInputSchema>;
 
 export const isShortUrlExpired = (shortUrl: ShortUrl) => {
   const now = Date.now();

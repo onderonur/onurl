@@ -1,6 +1,7 @@
-import Alert from '@/common/Alert';
-import connectToDb from '@/db/connectToDb';
-import { isShortUrlExpired } from '@/short-url/ShortUrlUtils';
+import Alert from '@/common/alert';
+import { increaseShortUrlClicks } from '@/short-urls/short-url-actions';
+import { getShortUrl } from '@/short-urls/short-url-fetchers';
+import { isShortUrlExpired } from '@/short-urls/short-url-utils';
 import { redirect } from 'next/navigation';
 
 type AliasPageProps = {
@@ -10,13 +11,9 @@ type AliasPageProps = {
 };
 
 export default async function AliasPage({ params }: AliasPageProps) {
-  const prisma = await connectToDb();
-
   const { alias } = params;
 
-  const shortUrl = await prisma.shortUrl.findFirst({
-    where: { alias },
-  });
+  const shortUrl = await getShortUrl(alias);
 
   if (!shortUrl) {
     return <Alert type="error" message="URL not found" />;
@@ -26,10 +23,7 @@ export default async function AliasPage({ params }: AliasPageProps) {
     return <Alert type="error" message="URL is expired" />;
   }
 
-  await prisma.shortUrl.update({
-    where: { alias },
-    data: { clicks: shortUrl.clicks + 1 },
-  });
+  await increaseShortUrlClicks(alias);
 
   return redirect(shortUrl.url);
 }

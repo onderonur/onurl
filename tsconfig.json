@@ -38,5 +38,5 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/app/api/shorturl"  ]
+  ]
 }

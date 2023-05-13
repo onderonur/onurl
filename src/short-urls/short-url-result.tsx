@@ -1,27 +1,31 @@
 'use client';
 
-import Alert from '@/common/Alert';
-import Button from '@/common/Button';
-import { Maybe } from '@/common/CommonTypes';
-import ExternalLink from '@/common/ExternalLink';
-import UrlQrCode from '@/qr-code/UrlQrCode';
-import ShareButtons from '@/social-share/ShareButtons';
+import Alert from '@/common/alert';
+import Button from '@/common/button';
+import { Maybe } from '@/common/common-types';
+import ExternalLink from '@/common/external-link';
+import UrlQrCode from '@/qr-codes/url-rq-code';
+import ShareButtons from '@/social-share/share-buttons';
 import { useState } from 'react';
 import { AiOutlineCopy } from 'react-icons/ai';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { ShortUrl } from '@prisma/client';
 
 type ShortUrlResultProps = {
-  url: Maybe<string>;
-  shortenedUrl: Maybe<string>;
+  shortUrl: Maybe<ShortUrl>;
   error: Maybe<string>;
 };
 
 export default function ShortUrlResult({
-  url,
-  shortenedUrl,
+  shortUrl,
   error,
 }: ShortUrlResultProps) {
   const [hasCopied, setHasCopied] = useState(false);
+
+  const url = shortUrl?.url;
+  const alias = shortUrl?.alias;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const shortenedUrl = alias ? `${baseUrl}/${alias}` : undefined;
 
   if (error) {
     return <Alert type="error" message={error} />;

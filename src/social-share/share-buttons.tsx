@@ -15,7 +15,7 @@ import {
   MailruShareButton,
   MailruIcon,
 } from 'react-share';
-import { Maybe } from '@/common/CommonTypes';
+import { Maybe } from '@/common/common-types';
 
 type ShareButtonsProps = {
   url: Maybe<string>;

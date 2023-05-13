@@ -1,5 +1,5 @@
-import '@/common/CommonTypes';
-import { Maybe } from '@/common/CommonTypes';
+import '@/common/common-types';
+import { Maybe } from '@/common/common-types';
 import { PrismaClient } from '@prisma/client';
 
 const { DATABASE_URL } = process.env;

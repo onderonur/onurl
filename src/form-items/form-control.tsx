@@ -1,6 +1,6 @@
 import FormControlProvider, {
   FormControlContextValue,
-} from './FormControlContext';
+} from './form-control-context';
 
 type FormControlProps = React.PropsWithChildren<
   Pick<FormControlContextValue, 'isInvalid' | 'isRequired'>

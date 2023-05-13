@@ -1,7 +1,7 @@
-import { APP_TITLE } from '@/common/CommonUtils';
-import UrlShortenerLogo from '@/common/UrlShortenerLogo';
-import ShortUrlForm from '@/short-url/ShortUrlForm';
-import { URL_LIFETIME_IN_MINUTES } from '@/short-url/ShortUrlUtils';
+import { APP_TITLE } from '@/common/common-utils';
+import UrlShortenerLogo from '@/common/url-shortener-logo';
+import ShortUrlForm from '@/short-urls/short-url-form';
+import { URL_LIFETIME_IN_MINUTES } from '@/short-urls/short-url-utils';
 
 export default function HomePage() {
   return (

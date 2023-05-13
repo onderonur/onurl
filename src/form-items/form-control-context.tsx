@@ -2,7 +2,7 @@ import React, { useContext, useId } from 'react';
 
 export type FormControlContextValue = {
   isRequired?: boolean;
-  isInvalid: boolean;
+  isInvalid?: boolean;
   ids: {
     input: string;
     message: string;

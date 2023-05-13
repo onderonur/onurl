@@ -1,6 +1,6 @@
-import { APP_TITLE } from '@/common/CommonUtils';
-import ExternalLink from '@/common/ExternalLink';
-import BaseLink from '@/common/BaseLink';
+import { APP_TITLE } from '@/common/common-utils';
+import ExternalLink from '@/common/external-link';
+import BaseLink from '@/common/base-link';
 import {
   AiOutlineGithub,
   AiOutlineTwitter,

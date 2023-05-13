@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useFormControl } from './FormControlContext';
+import { useFormControl } from './form-control-context';
 
 type FormLabel = React.ComponentProps<'label'>;
 

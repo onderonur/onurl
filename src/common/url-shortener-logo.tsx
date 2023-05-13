@@ -1,4 +1,4 @@
-import { APP_TITLE } from './CommonUtils';
+import { APP_TITLE } from './common-utils';
 
 export default function UrlShortenerLogo() {
   return (

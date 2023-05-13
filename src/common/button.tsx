@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import Loading from './Loading';
+import Loading from './loading';
 
 type ButtonProps = React.ComponentProps<'button'> & {
   size?: 'default' | 'small';
