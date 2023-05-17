@@ -3,7 +3,7 @@ import FormControlProvider, {
 } from './form-control-context';
 
 type FormControlProps = React.PropsWithChildren<
-  Pick<FormControlContextValue, 'isInvalid' | 'isRequired'>
+  Pick<FormControlContextValue, 'isRequired' | 'errorMessages'>
 >;
 
 export default function FormControl({ children, ...rest }: FormControlProps) {

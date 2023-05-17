@@ -7,6 +7,7 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.vercel.app/)
 
 - Framework: [Next.js](https://nextjs.org/)
 - Styling: [Tailwind CSS](https://tailwindcss.com/)
+- TODO: Fix README for server actions (react hook form etc.)
 - Forms: [React Hook Form](https://react-hook-form.com/)
 - Schema Validation: [Zod](https://zod.dev/)
 - Icons: [React Icons](https://react-icons.github.io/react-icons/)

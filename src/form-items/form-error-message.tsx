@@ -1,13 +1,9 @@
 import { useFormControl } from './form-control-context';
 
-type FormErrorMessageProps = {
-  messages?: string[];
-};
+export default function FormErrorMessage() {
+  const { ids, errorMessages } = useFormControl();
 
-export default function FormErrorMessage({ messages }: FormErrorMessageProps) {
-  const { ids, isInvalid } = useFormControl();
-
-  if (!isInvalid || !messages?.length) {
+  if (!errorMessages?.length) {
     return null;
   }
 
@@ -16,7 +12,7 @@ export default function FormErrorMessage({ messages }: FormErrorMessageProps) {
   // https://chakra-ui.com/docs/components/form-control#improvements-from-v1
   return (
     <div id={ids.message} className="text-error-600" aria-live="polite">
-      {messages.join(', ')}
+      {errorMessages.join(', ')}
     </div>
   );
 }

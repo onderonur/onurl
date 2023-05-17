@@ -1,33 +1,39 @@
-import React, { useContext, useId } from 'react';
+import { useId } from 'react';
+import { createSafeContext } from '@/common/safe-context';
+import { Maybe } from '@/common/common-types';
 
 export type FormControlContextValue = {
   isRequired?: boolean;
-  isInvalid?: boolean;
   ids: {
     input: string;
     message: string;
   };
+  errorMessages: Maybe<string[]>;
 };
 
-const FormControlContext = React.createContext({} as FormControlContextValue);
-
-export function useFormControl() {
-  return useContext(FormControlContext);
-}
+export const [FormControlContext, useFormControl] =
+  createSafeContext<FormControlContextValue>({
+    displayName: 'FormControlContext',
+  });
 
 type FormControlProviderProps = React.PropsWithChildren<
-  Pick<FormControlContextValue, 'isInvalid' | 'isRequired'>
+  Pick<FormControlContextValue, 'isRequired' | 'errorMessages'>
 >;
 
 export default function FormControlProvider({
   children,
+  errorMessages,
   ...rest
 }: FormControlProviderProps) {
   const id = useId();
 
   return (
     <FormControlContext.Provider
-      value={{ ...rest, ids: { input: id, message: `${id}-message` } }}
+      value={{
+        ...rest,
+        errorMessages,
+        ids: { input: id, message: `${id}-message` },
+      }}
     >
       {children}
     </FormControlContext.Provider>

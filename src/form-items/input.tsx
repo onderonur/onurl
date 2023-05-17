@@ -1,14 +1,15 @@
-import React from 'react';
 import classNames from 'classnames';
 import { useFormControl } from './form-control-context';
+import { forwardRef } from 'react';
 
 type InputProps = React.ComponentProps<'input'>;
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { className, ...rest },
   ref,
 ) {
-  const { ids, isInvalid } = useFormControl();
+  const { ids, errorMessages } = useFormControl();
+  const isInvalid = !!errorMessages?.length;
 
   return (
     <input

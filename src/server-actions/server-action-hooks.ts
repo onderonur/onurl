@@ -2,16 +2,14 @@ import { useRef, useState } from 'react';
 import { Maybe } from '../common/common-types';
 import { FieldErrors, ServerActionResult } from './server-action-types';
 
-export function useFormAction<InputSchema, Data>(
-  action: (
-    formData: FormData,
-  ) => Promise<ServerActionResult<InputSchema, Data>>,
+export function useFormAction<Input, Data>(
+  action: (formData: FormData) => Promise<ServerActionResult<Input, Data>>,
 ) {
   const formRef = useRef<HTMLFormElement>(null);
   const [data, setData] = useState<Maybe<Data>>(null);
   const [error, setError] = useState<Maybe<string>>(null);
   const [fieldErrors, setFieldErrors] =
-    useState<Maybe<FieldErrors<InputSchema>>>(null);
+    useState<Maybe<FieldErrors<Input>>>(null);
 
   return {
     formRef,

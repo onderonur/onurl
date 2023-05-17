@@ -25,15 +25,15 @@ export default function ShortUrlForm() {
         noValidate
         action={runAction}
       >
-        <FormControl isRequired isInvalid={!!fieldErrors?.url}>
+        <FormControl isRequired errorMessages={fieldErrors?.url}>
           <FormLabel>URL</FormLabel>
           <Input name="url" />
-          <FormErrorMessage messages={fieldErrors?.url} />
+          <FormErrorMessage />
         </FormControl>
-        <FormControl isInvalid={!!fieldErrors?.customAlias}>
+        <FormControl errorMessages={fieldErrors?.customAlias}>
           <FormLabel>Custom Alias (Optional)</FormLabel>
           <Input name="customAlias" />
-          <FormErrorMessage messages={fieldErrors?.customAlias} />
+          <FormErrorMessage />
         </FormControl>
         <div className="flex justify-end">
           <SubmitButton />
