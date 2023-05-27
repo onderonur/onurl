@@ -11,10 +11,12 @@ export type FormControlContextValue = {
   errorMessages: Maybe<string[]>;
 };
 
-export const [FormControlContext, useFormControl] =
+const [FormControlContext, useFormControl] =
   createSafeContext<FormControlContextValue>({
     displayName: 'FormControlContext',
   });
+
+export { useFormControl };
 
 type FormControlProviderProps = React.PropsWithChildren<
   Pick<FormControlContextValue, 'isRequired' | 'errorMessages'>

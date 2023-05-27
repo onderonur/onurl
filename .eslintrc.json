@@ -1,5 +1,6 @@
 {
   "extends": [
+    // https://nextjs.org/docs/pages/building-your-application/configuring/eslint#additional-configurations
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
@@ -26,7 +27,6 @@
     "prefer-destructuring": "warn",
     "prefer-const": "warn",
     "object-shorthand": "warn",
-    "curly": "warn",
-    "@typescript-eslint/ban-types": "off"
+    "curly": "warn"
   }
 }
