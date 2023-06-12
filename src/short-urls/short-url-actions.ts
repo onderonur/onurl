@@ -1,6 +1,6 @@
 'use server';
 
-import { nanoid } from 'nanoid';
+import { customAlphabet } from 'nanoid';
 import {
   shortUrlInputSchema,
   DEFAULT_ALIAS_LENGTH,
@@ -10,6 +10,12 @@ import { goTry } from 'go-try';
 import { isUniqueConstraintError } from '@/db/db-utils';
 import { getShortUrl } from './short-url-fetchers';
 import { createAction } from '@/server-actions/server-action-utils';
+
+const lowerCaseAlphabet = [...Array(26)].map((val, i) =>
+  String.fromCharCode(i + 65).toLowerCase(),
+);
+
+const nanoid = customAlphabet(`${lowerCaseAlphabet.join('')}0123456789`);
 
 export const createShortUrl = createAction(async (formData: FormData) => {
   const input = shortUrlInputSchema.safeParse({
