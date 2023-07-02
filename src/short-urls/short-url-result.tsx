@@ -4,10 +4,10 @@ import Alert from '@/common/alert';
 import Button from '@/common/button';
 import { Maybe } from '@/common/common-types';
 import ExternalLink from '@/common/external-link';
-import UrlQrCode from '@/qr-codes/url-rq-code';
+import UrlQrCode from '@/qr-codes/url-qr-code';
 import ShareButtons from '@/social-share/share-buttons';
 import { useState } from 'react';
-import { AiOutlineCopy } from 'react-icons/ai';
+import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { ShortUrl } from '@prisma/client';
 
@@ -66,7 +66,11 @@ export default function ShortUrlResult({
               }, 2000);
             }}
           >
-            <Button className="ml-1" startIcon={<AiOutlineCopy />} size="small">
+            <Button
+              className="ml-1"
+              startIcon={hasCopied ? <AiOutlineCheck /> : <AiOutlineCopy />}
+              size="small"
+            >
               {hasCopied ? 'Copied' : 'Copy'}
             </Button>
           </CopyToClipboard>

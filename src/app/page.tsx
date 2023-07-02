@@ -10,11 +10,10 @@ export default function HomePage() {
         <div className="h-64 mb-4">
           <UrlShortenerLogo />
         </div>
-        <div>
+        <div className="text-center font-semibold text-primary-600">
           <h1 className="sr-only">{APP_TITLE}</h1>
-          <p className="text-center font-semibold text-primary-600">
-            {APP_TITLE} is an open source URL shortener demo.
-            <br />
+          <p>{APP_TITLE} is an open source URL shortener demo.</p>
+          <p>
             Since this is a demo application, shortened URLs will be active for{' '}
             {URL_LIFETIME_IN_MINUTES} minutes only.
           </p>
