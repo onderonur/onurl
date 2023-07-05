@@ -6,10 +6,12 @@ import { Maybe } from '@/common/common-types';
 import ExternalLink from '@/common/external-link';
 import UrlQrCode from '@/qr-codes/url-qr-code';
 import ShareButtons from '@/social-share/share-buttons';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { ShortUrl } from '@prisma/client';
+import Divider from '@/common/divider';
+import Paper from '@/common/paper';
 
 type ShortUrlResultProps = {
   shortUrl: Maybe<ShortUrl>;
@@ -21,6 +23,7 @@ export default function ShortUrlResult({
   error,
 }: ShortUrlResultProps) {
   const [hasCopied, setHasCopied] = useState(false);
+  const timerRef = useRef<Maybe<NodeJS.Timer>>(null);
 
   const url = shortUrl?.url;
   const alias = shortUrl?.alias;
@@ -28,7 +31,11 @@ export default function ShortUrlResult({
   const shortenedUrl = alias ? `${baseUrl}/${alias}` : undefined;
 
   if (error) {
-    return <Alert type="error" message={error} />;
+    return (
+      <Paper>
+        <Alert type="error" message={error} />
+      </Paper>
+    );
   }
 
   if (!url || !shortenedUrl) {
@@ -36,11 +43,12 @@ export default function ShortUrlResult({
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <Paper className="flex flex-col gap-2">
       <Alert
         type="success"
         message="Your new URL has been created successfully!"
       />
+      <Divider />
       <div>
         <p className="break-words">
           <span className="font-semibold">Old URL:</span>{' '}
@@ -61,7 +69,12 @@ export default function ShortUrlResult({
             text={shortenedUrl}
             onCopy={() => {
               setHasCopied(true);
-              setTimeout(() => {
+
+              if (timerRef.current) {
+                clearTimeout(timerRef.current);
+              }
+
+              timerRef.current = setTimeout(() => {
                 setHasCopied(false);
               }, 2000);
             }}
@@ -80,13 +93,16 @@ export default function ShortUrlResult({
           {shortenedUrl.length} characters
         </p>
       </div>
-      <div className="max-w-[256px]">
-        <p className="font-semibold">QR Code:</p>
-        <UrlQrCode url={shortenedUrl} size={256} />
+      <Divider />
+      <div className="flex flex-col items-center">
+        <div className="max-w-[256px] w-full">
+          <UrlQrCode url={shortenedUrl} size={256} />
+        </div>
       </div>
+      <Divider />
       <div className="mt-2">
         <ShareButtons url={shortenedUrl} />
       </div>
-    </div>
+    </Paper>
   );
 }

@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       id={ids.input}
       className={classNames(
         className,
-        'w-full p-2 rounded-sm border border-background-300',
+        'w-full p-2 rounded-md shadow-md',
         isInvalid && 'outline [&:not(:focus)]:outline-error-600',
       )}
       aria-invalid={isInvalid}

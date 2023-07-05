@@ -22,7 +22,7 @@ export default function Button({
       type={type}
       className={classNames(
         className,
-        'relative inline-flex items-center justify-center font-semibold rounded-sm transition-colors',
+        'relative inline-flex items-center justify-center rounded-md font-semibold transition-colors',
         'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
         'disabled:bg-disabled-300 disabled:text-disabled-400',
         size === 'default'

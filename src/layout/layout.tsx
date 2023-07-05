@@ -24,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
           <AiOutlineGithub className="h-8 w-8" />
         </ExternalLink>
       </header>
-      <main className="flex-1 mx-auto max-w-screen-md w-full p-4">
+      <main className="flex-1 mx-auto max-w-screen-sm w-full p-4">
         {children}
       </main>
       <footer className="p-6 flex gap-2 justify-center">

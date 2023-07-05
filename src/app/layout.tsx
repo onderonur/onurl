@@ -16,7 +16,7 @@ const description = `${APP_TITLE} is a URL shortener which makes it easy to shor
 export const metadata = {
   title,
   description,
-  themeColor: '#c7d2fe',
+  themeColor: '#e2f0ec',
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
   creator: 'Onur Önder',
   applicationName: APP_TITLE,
@@ -46,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={classNames(inter.variable, 'font-sans')}>
-      <body className="bg-background-200">
+      <body className="bg-gradient-to-r from-rose-100 to-teal-100">
         <Layout>{children}</Layout>
       </body>
     </html>

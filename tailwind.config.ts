@@ -13,7 +13,10 @@ const config: Config = {
         success: colors.green,
         error: colors.red,
         disabled: colors.gray,
-        background: colors.indigo,
+        // TODO: Refactor text, background and border color usage since they are all slate.
+        text: colors.slate,
+        background: colors.slate,
+        border: colors.slate,
       },
     },
   },

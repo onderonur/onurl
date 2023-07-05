@@ -18,11 +18,11 @@ export default function ShortUrlForm() {
   >(createShortUrl);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-5">
       <form
         ref={formRef}
         className="flex flex-col gap-2"
-        noValidate
+        autoComplete="off"
         action={runAction}
       >
         <FormControl isRequired errorMessages={fieldErrors?.url}>

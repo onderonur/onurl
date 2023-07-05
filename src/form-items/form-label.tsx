@@ -9,7 +9,7 @@ export default function FormLabel({ className, children, ...rest }: FormLabel) {
   return (
     <label
       htmlFor={ids.input}
-      className={classNames(className, 'font-semibold')}
+      className={classNames(className, 'font-semibold text-slate-700')}
       {...rest}
     >
       {children} {isRequired && <span className="text-error-600">*</span>}
