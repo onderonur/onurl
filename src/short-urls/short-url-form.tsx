@@ -27,12 +27,12 @@ export default function ShortUrlForm() {
       >
         <FormControl isRequired errorMessages={fieldErrors?.url}>
           <FormLabel>URL</FormLabel>
-          <Input name="url" />
+          <Input name="url" type="url" />
           <FormErrorMessage />
         </FormControl>
         <FormControl errorMessages={fieldErrors?.customAlias}>
           <FormLabel>Custom Alias (Optional)</FormLabel>
-          <Input name="customAlias" />
+          <Input name="customAlias" autoCapitalize="off" />
           <FormErrorMessage />
         </FormControl>
         <div className="flex justify-end">

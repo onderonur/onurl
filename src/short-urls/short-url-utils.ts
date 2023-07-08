@@ -10,8 +10,7 @@ export const shortUrlInputSchema = z.object({
   customAlias: z
     .string()
     .trim()
-    .toLowerCase()
-    .regex(/^([a-z1-9]+)?$/, {
+    .regex(/^([a-zA-Z1-9]+)?$/, {
       message: 'Alias should only contain letters and numbers',
     })
     .max(MAX_CUSTOM_ALIAS_LENGTH, {
