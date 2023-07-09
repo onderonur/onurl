@@ -6,7 +6,7 @@ import { AiOutlineCloudDownload } from 'react-icons/ai';
 
 const qrCodeId = 'qrCode';
 
-const handleSaveQrCode = async () => {
+const handleSaveQrCode = () => {
   const canvasContainer = document.getElementById(qrCodeId) as HTMLDivElement;
   // eslint-disable-next-line prefer-destructuring
   const canvas = canvasContainer.getElementsByTagName('canvas')[0];

@@ -1,29 +1,26 @@
-'use client';
-
-import ShortUrlResult from './short-url-result';
-import { createShortUrl } from './short-url-actions';
 import FormControl from '@/form-items/form-control';
 import FormLabel from '@/form-items/form-label';
 import Input from '@/form-items/input';
 import SubmitButton from '@/form-items/submit-button';
-import { useFormAction } from '@/server-actions/server-action-hooks';
 import FormErrorMessage from '@/form-items/form-error-message';
+import { FieldErrors } from '@/server-actions/server-action-types';
 import { ShortUrlInput } from './short-url-utils';
-import { ShortUrl } from '@prisma/client';
+import { Maybe } from '@/common/common-types';
+import { forwardRef } from 'react';
 
-export default function ShortUrlForm() {
-  const { data, error, fieldErrors, runAction, formRef } = useFormAction<
-    ShortUrlInput,
-    ShortUrl
-  >(createShortUrl);
+type ShortUrlFormProps = {
+  action: React.FormHTMLAttributes<HTMLFormElement>['action'];
+  fieldErrors: Maybe<FieldErrors<ShortUrlInput>>;
+};
 
-  return (
-    <div className="flex flex-col gap-5">
+const ShortUrlForm = forwardRef<HTMLFormElement, ShortUrlFormProps>(
+  function ShortUrlForm({ action, fieldErrors }, ref) {
+    return (
       <form
-        ref={formRef}
+        ref={ref}
         className="flex flex-col gap-2"
         autoComplete="off"
-        action={runAction}
+        action={action}
       >
         <FormControl isRequired errorMessages={fieldErrors?.url}>
           <FormLabel>URL</FormLabel>
@@ -39,7 +36,8 @@ export default function ShortUrlForm() {
           <SubmitButton />
         </div>
       </form>
-      <ShortUrlResult shortUrl={data} error={error} />
-    </div>
-  );
-}
+    );
+  },
+);
+
+export default ShortUrlForm;

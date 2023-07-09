@@ -1,5 +1,3 @@
-'use client';
-
 import Alert from '@/common/alert';
 import Button from '@/common/button';
 import { Maybe } from '@/common/common-types';
