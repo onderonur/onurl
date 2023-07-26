@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 const title = APP_TITLE;
-const description = `${APP_TITLE} is a URL shortener which makes it easy to shorten and share your short URLs.`;
+const description = `${APP_TITLE} is a URL shortener which makes it easy to shorten and share your URLs.`;
 
 export const metadata = {
   title,
