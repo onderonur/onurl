@@ -38,19 +38,7 @@ export default function Button({
       disabled={disabled || isLoading}
       {...rest}
     >
-      {startIcon && (
-        <span
-          className={classNames(
-            size === 'default'
-              ? '[&>*]:h-6 [&>*]:w-6'
-              : size === 'small'
-              ? '[&>*]:h-4 [&>*]:w-4'
-              : null,
-          )}
-        >
-          {startIcon}
-        </span>
-      )}
+      {startIcon && <span className="bg-slate-50 relative">{startIcon}</span>}
       {children}
       {isLoading && (
         <Loading
