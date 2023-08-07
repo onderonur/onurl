@@ -19,7 +19,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "^5.0.0",
+    "@prisma/client": "^5.1.1",
     "classnames": "^2.3.2",
     "file-saver": "^2.0.5",
     "go-try": "^2.0.2",
@@ -35,9 +35,9 @@
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.5",
-    "@types/node": "^20.4.5",
+    "@types/node": "^20.4.7",
     "@types/qrcode.react": "^1.0.2",
-    "@types/react": "^18.2.17",
+    "@types/react": "^18.2.18",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
@@ -45,13 +45,13 @@
     "dotenv-cli": "^7.2.1",
     "eslint": "^8.46.0",
     "eslint-config-next": "^13.4.12",
-    "eslint-config-prettier": "^8.9.0",
+    "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-deprecation": "^1.5.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "postcss": "^8.4.27",
-    "prettier": "^3.0.0",
-    "prisma": "^5.0.0",
+    "prettier": "^3.0.1",
+    "prisma": "^5.1.1",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6"
   }

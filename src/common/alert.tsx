@@ -1,12 +1,19 @@
 import classNames from 'classnames';
 import { AiOutlineWarning, AiOutlineCheckCircle } from 'react-icons/ai';
 
+const IconsByType = {
+  success: AiOutlineCheckCircle,
+  error: AiOutlineWarning,
+};
+
 type AlertProps = {
   type: 'success' | 'error';
   message: string;
 };
 
 export default function Alert({ type, message }: AlertProps) {
+  const IconComponent = IconsByType[type];
+
   return (
     <div
       className={classNames(
@@ -15,11 +22,7 @@ export default function Alert({ type, message }: AlertProps) {
         type === 'error' && 'bg-error-100 text-error-700',
       )}
     >
-      {type === 'success' ? (
-        <AiOutlineCheckCircle className="h-6 w-6" />
-      ) : (
-        <AiOutlineWarning className="h-6 w-6" />
-      )}
+      <IconComponent className="h-6 w-6 flex-none" />
       {message}
     </div>
   );
