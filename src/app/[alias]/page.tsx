@@ -15,7 +15,7 @@ export default async function AliasPage({ params }: AliasPageProps) {
   const shortUrl = await getShortUrl(alias);
 
   if (!shortUrl || isShortUrlExpired(shortUrl)) {
-    return notFound();
+    notFound();
   }
 
   await increaseShortUrlClicks(alias);

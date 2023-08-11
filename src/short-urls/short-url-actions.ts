@@ -11,11 +11,9 @@ import { isUniqueConstraintError } from '@/db/db-utils';
 import { getShortUrl } from './short-url-fetchers';
 import { createAction } from '@/server-actions/server-action-utils';
 
-const lowerCaseAlphabet = [...Array(26)].map((val, i) =>
-  String.fromCharCode(i + 65).toLowerCase(),
+const nanoid = customAlphabet(
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 );
-
-const nanoid = customAlphabet(`${lowerCaseAlphabet.join('')}0123456789`);
 
 export const createShortUrl = createAction(async (formData: FormData) => {
   const input = shortUrlInputSchema.safeParse({
@@ -27,9 +25,15 @@ export const createShortUrl = createAction(async (formData: FormData) => {
     throw input.error;
   }
 
-  const prisma = await connectToDb();
-
   const { data } = input;
+
+  const parsedUrl = new URL(data.url);
+
+  if (parsedUrl.origin === process.env.NEXT_PUBLIC_BASE_URL) {
+    throw new Error('Invalid host');
+  }
+
+  const prisma = await connectToDb();
 
   const [err, shortUrl] = await goTry(() =>
     prisma.shortUrl.create({
