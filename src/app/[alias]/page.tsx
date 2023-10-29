@@ -1,7 +1,7 @@
 import { increaseShortUrlClicks } from '@/short-urls/short-url-actions';
 import { getShortUrl } from '@/short-urls/short-url-fetchers';
 import { isShortUrlExpired } from '@/short-urls/short-url-utils';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 type AliasPageProps = {
   params: {
@@ -20,5 +20,5 @@ export default async function AliasPage({ params }: AliasPageProps) {
 
   await increaseShortUrlClicks(alias);
 
-  return redirect(shortUrl.url);
+  return permanentRedirect(shortUrl.url);
 }
