@@ -10,7 +10,7 @@ export default function CopyToClipboardButton({
   text,
 }: CopyToClipboardButtonProps) {
   const [hasCopied, setHasCopied] = useState(false);
-  const timerRef = useRef<Maybe<NodeJS.Timer>>(null);
+  const timerRef = useRef<Maybe<NodeJS.Timeout>>(null);
 
   return (
     <CopyToClipboard

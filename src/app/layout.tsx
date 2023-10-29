@@ -3,6 +3,7 @@ import Layout from '@/layout/layout';
 import { APP_TITLE } from '@/common/common-utils';
 import classNames from 'classnames';
 import '@/styles/global.css';
+import { Viewport } from 'next';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -16,7 +17,6 @@ const description = `${APP_TITLE} is a URL shortener which makes it easy to shor
 export const metadata = {
   title,
   description,
-  themeColor: '#e2f0ec',
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
   creator: 'Onur Önder',
   applicationName: APP_TITLE,
@@ -38,6 +38,12 @@ export const metadata = {
     creator: '@onderonur_',
   },
 };
+
+export function generateViewport(): Viewport {
+  return {
+    themeColor: '#e2f0ec',
+  };
+}
 
 export default function RootLayout({
   children,

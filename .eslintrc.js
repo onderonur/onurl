@@ -23,17 +23,18 @@ module.exports = {
   // So, we removed this file by using "!" from ignoredPatterns.
   ignorePatterns: ['!.lintstagedrc.js'],
   // For eslint-plugin-deprecation:
+  // https://github.com/gund/eslint-plugin-deprecation#prerequisites
   // https://stackoverflow.com/a/64488474/10876256
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
       // eslint-plugin-deprecation only works for .ts and .tsx files.
       // So, linting was not working for .js files like postcss.config.js etc.
       // As a solution, we applied the plugin to only .ts and .tsx files.
-      extends: ['plugin:deprecation/recommended'],
+      files: ['*.ts', '*.tsx'],
       parserOptions: {
         project: './tsconfig.json',
       },
+      plugins: ['deprecation'],
       rules: {
         'deprecation/deprecation': 'warn',
       },
