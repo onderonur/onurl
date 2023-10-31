@@ -1,10 +1,11 @@
-import { Maybe } from '@/common/common-types';
 import { z } from 'zod';
 
-export type ServerActionResult<Input, Data> = {
-  data: Maybe<Data>;
-  error: Maybe<string>;
-  fieldErrors: Maybe<z.typeToFlattenedError<Input>['fieldErrors']>;
-};
+export type FieldErrors<Input> = z.ZodFormattedError<Input>;
 
-export type FieldErrors<Input> = z.typeToFlattenedError<Input>['fieldErrors'];
+export type ServerActionResult<Input, Data> =
+  | { success: true; data: Data }
+  | {
+      success: false;
+      error?: string;
+      fieldErrors?: FieldErrors<Input>;
+    };

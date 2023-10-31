@@ -4,25 +4,30 @@ import { customAlphabet } from 'nanoid';
 import {
   shortUrlInputSchema,
   DEFAULT_ALIAS_LENGTH,
+  ShortUrlInput,
 } from '@/short-urls/short-url-utils';
 import connectToDb from '@/db/connect-to-db';
 import { goTry } from 'go-try';
 import { isUniqueConstraintError } from '@/db/db-utils';
 import { getShortUrl } from './short-url-fetchers';
-import { createAction } from '@/server-actions/server-action-utils';
+import { ServerActionResult } from '@/server-actions/server-action-types';
+import { ShortUrl } from '@prisma/client';
 
 const nanoid = customAlphabet(
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 );
 
-export const createShortUrl = createAction(async (formData: FormData) => {
+export async function createShortUrl(
+  currentState: ServerActionResult<ShortUrlInput, ShortUrl> | null,
+  formData: FormData,
+): Promise<ServerActionResult<ShortUrlInput, ShortUrl>> {
   const input = shortUrlInputSchema.safeParse({
     url: formData.get('url'),
     customAlias: formData.get('customAlias'),
   });
 
   if (!input.success) {
-    throw input.error;
+    return { success: false, fieldErrors: input.error.format() };
   }
 
   const { data } = input;
@@ -30,12 +35,12 @@ export const createShortUrl = createAction(async (formData: FormData) => {
   const parsedUrl = new URL(data.url);
 
   if (parsedUrl.origin === process.env.NEXT_PUBLIC_BASE_URL) {
-    throw new Error('Invalid host');
+    return { success: false, error: 'Invalid host' };
   }
 
   const prisma = await connectToDb();
 
-  const [err, shortUrl] = await goTry(() =>
+  const [error, shortUrl] = await goTry(() =>
     prisma.shortUrl.create({
       data: {
         url: data.url,
@@ -45,18 +50,19 @@ export const createShortUrl = createAction(async (formData: FormData) => {
     }),
   );
 
-  if (err) {
-    if (isUniqueConstraintError(err)) {
-      throw new Error(
-        `"${data.customAlias}" is already in use. Please use another alias.`,
-      );
+  if (error) {
+    if (isUniqueConstraintError(error)) {
+      return {
+        success: false,
+        error: `"${data.customAlias}" is already in use. Please use another alias.`,
+      };
     }
 
-    throw err;
+    return { success: false, error: error.message };
   }
 
-  return shortUrl;
-});
+  return { success: true, data: shortUrl };
+}
 
 export async function increaseShortUrlClicks(alias: string) {
   const prisma = await connectToDb();

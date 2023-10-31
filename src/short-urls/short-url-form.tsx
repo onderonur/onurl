@@ -22,12 +22,12 @@ const ShortUrlForm = forwardRef<HTMLFormElement, ShortUrlFormProps>(
         autoComplete="off"
         action={action}
       >
-        <FormControl isRequired errorMessages={fieldErrors?.url}>
+        <FormControl isRequired errorMessages={fieldErrors?.url?._errors}>
           <FormLabel>URL</FormLabel>
           <Input name="url" type="url" />
           <FormErrorMessage />
         </FormControl>
-        <FormControl errorMessages={fieldErrors?.customAlias}>
+        <FormControl errorMessages={fieldErrors?.customAlias?._errors}>
           <FormLabel>Custom Alias (Optional)</FormLabel>
           <Input name="customAlias" autoCapitalize="off" />
           <FormErrorMessage />

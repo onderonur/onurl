@@ -39,11 +39,9 @@ export const metadata = {
   },
 };
 
-export function generateViewport(): Viewport {
-  return {
-    themeColor: '#e2f0ec',
-  };
-}
+export const viewport: Viewport = {
+  themeColor: '#e2f0ec',
+};
 
 export default function RootLayout({
   children,

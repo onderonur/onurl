@@ -7,8 +7,6 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.vercel.app/)
 
 - Framework: [Next.js](https://nextjs.org/)
 - Styling: [Tailwind CSS](https://tailwindcss.com/)
-- TODO: Fix README for server actions (react hook form etc.)
-- Forms: [React Hook Form](https://react-hook-form.com/)
 - Schema Validation: [Zod](https://zod.dev/)
 - Icons: [React Icons](https://react-icons.github.io/react-icons/)
 - Social Media Share Buttons: [react-share](https://github.com/nygardk/react-share)
@@ -17,8 +15,11 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.vercel.app/)
 - Illustrations: [unDraw](https://undraw.co/)
 - Linting: [ESLint](https://eslint.org/)
 - Code Formatting: [Prettier](https://prettier.io/)
+- Deployment: [Vercel](https://vercel.com/)
 
 ## ⌨️ Development
+
+TODO: `README` will be updated for using Dev Containers.
 
 First, you need to set a MongoDB connection string for `DATABASE_URL` in `.env.development`.
 

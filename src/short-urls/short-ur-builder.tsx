@@ -1,26 +1,32 @@
 'use client';
 
-import { ShortUrl } from '@prisma/client';
 import ShortUrlResult from './short-url-result';
-import { ShortUrlInput } from './short-url-utils';
 import { createShortUrl } from './short-url-actions';
-import { useFormAction } from '@/server-actions/server-action-hooks';
 import ShortUrlForm from './short-url-form';
+import { useFormState } from 'react-dom';
+import { useEffect, useRef } from 'react';
 
 export default function ShortUrlBuilder() {
-  const { data, error, fieldErrors, runAction, formRef } = useFormAction<
-    ShortUrlInput,
-    ShortUrl
-  >(createShortUrl);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [state, formAction] = useFormState(createShortUrl, null);
+
+  useEffect(() => {
+    if (state?.success) {
+      formRef.current?.reset();
+    }
+  }, [state]);
 
   return (
     <div className="flex flex-col gap-5">
       <ShortUrlForm
         ref={formRef}
-        action={runAction}
-        fieldErrors={fieldErrors}
+        action={formAction}
+        fieldErrors={state?.success ? null : state?.fieldErrors}
       />
-      <ShortUrlResult shortUrl={data} error={error} />
+      <ShortUrlResult
+        shortUrl={state?.success ? state.data : null}
+        error={state?.success ? null : state?.error}
+      />
     </div>
   );
 }
