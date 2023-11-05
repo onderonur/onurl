@@ -7,7 +7,7 @@ import { useFormState } from 'react-dom';
 import { useEffect, useRef } from 'react';
 
 export default function ShortUrlBuilder() {
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<React.ElementRef<'form'>>(null);
   const [state, formAction] = useFormState(createShortUrl, null);
 
   useEffect(() => {

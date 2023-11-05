@@ -1,5 +1,4 @@
-import '@/common/common-types';
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 import { PrismaClient } from '@prisma/client';
 
 const { DATABASE_URL } = process.env;
@@ -10,10 +9,10 @@ if (!DATABASE_URL) {
 
 declare global {
   // eslint-disable-next-line no-var
-  var db: {
+  var db: Maybe<{
     prisma: PrismaClient;
     promise: Maybe<Promise<void>>;
-  };
+  }>;
 }
 
 export default async function connectToDb() {

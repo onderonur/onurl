@@ -1,4 +1,4 @@
-import { ShortUrl } from '@prisma/client';
+import type { ShortUrl } from '@prisma/client';
 import { z } from 'zod';
 
 const MAX_CUSTOM_ALIAS_LENGTH = 30;

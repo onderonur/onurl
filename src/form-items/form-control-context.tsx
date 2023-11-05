@@ -1,6 +1,6 @@
 import { useId } from 'react';
 import { createSafeContext } from '@/common/safe-context';
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 
 export type FormControlContextValue = {
   isRequired?: boolean;

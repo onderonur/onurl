@@ -8,9 +8,13 @@ const qrCodeId = 'qrCode';
 
 const handleSaveQrCode = () => {
   const canvasContainer = document.getElementById(qrCodeId) as HTMLDivElement;
-  // eslint-disable-next-line prefer-destructuring
-  const canvas = canvasContainer.getElementsByTagName('canvas')[0];
-  const png = canvas?.toDataURL();
+  const canvas = canvasContainer.getElementsByTagName('canvas').item(0);
+
+  if (!canvas) {
+    return;
+  }
+
+  const png = canvas.toDataURL();
   saveAs(png, `${APP_TITLE}-QRCode-${Date.now()}`);
 };
 

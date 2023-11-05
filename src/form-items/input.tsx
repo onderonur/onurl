@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 
 type InputProps = React.ComponentProps<'input'>;
 
-const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+const Input = forwardRef<React.ElementRef<'input'>, InputProps>(function Input(
   { className, ...rest },
   ref,
 ) {

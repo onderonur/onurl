@@ -3,7 +3,7 @@ import Layout from '@/layout/layout';
 import { APP_TITLE } from '@/common/common-utils';
 import classNames from 'classnames';
 import '@/styles/global.css';
-import { Viewport } from 'next';
+import type { Viewport } from 'next';
 
 const inter = Inter({
   variable: '--font-inter',

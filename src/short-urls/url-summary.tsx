@@ -1,4 +1,4 @@
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 import ExternalLink from '@/common/external-link';
 import CopyToClipboardButton from '@/common/copy-to-clipboard-button';
 
@@ -28,7 +28,7 @@ export default function UrlSummary({
           <span className="font-semibold">{url.length}</span> characters
         </p>
       </div>
-      {canBeCopied && <CopyToClipboardButton text={url} />}
+      {canBeCopied ? <CopyToClipboardButton text={url} /> : null}
     </div>
   );
 }

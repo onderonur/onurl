@@ -12,7 +12,7 @@ export default function FormLabel({ className, children, ...rest }: FormLabel) {
       className={classNames(className, 'font-semibold text-slate-700')}
       {...rest}
     >
-      {children} {isRequired && <span className="text-error-600">*</span>}
+      {children} {isRequired ? <span className="text-error-600">*</span> : null}
     </label>
   );
 }

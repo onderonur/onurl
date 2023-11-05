@@ -3,9 +3,9 @@ import FormLabel from '@/form-items/form-label';
 import Input from '@/form-items/input';
 import SubmitButton from '@/form-items/submit-button';
 import FormErrorMessage from '@/form-items/form-error-message';
-import { FieldErrors } from '@/server-actions/server-action-types';
-import { ShortUrlInput } from './short-url-utils';
-import { Maybe } from '@/common/common-types';
+import type { FieldErrors } from '@/server-actions/server-action-types';
+import type { ShortUrlInput } from './short-url-utils';
+import type { Maybe } from '@/common/common-types';
 import { forwardRef } from 'react';
 
 type ShortUrlFormProps = {
@@ -13,7 +13,7 @@ type ShortUrlFormProps = {
   fieldErrors: Maybe<FieldErrors<ShortUrlInput>>;
 };
 
-const ShortUrlForm = forwardRef<HTMLFormElement, ShortUrlFormProps>(
+const ShortUrlForm = forwardRef<React.ElementRef<'form'>, ShortUrlFormProps>(
   function ShortUrlForm({ action, fieldErrors }, ref) {
     return (
       <form

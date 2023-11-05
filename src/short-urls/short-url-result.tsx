@@ -1,8 +1,8 @@
 import Alert from '@/common/alert';
-import { Maybe } from '@/common/common-types';
+import type { Maybe } from '@/common/common-types';
 import UrlQrCode from '@/qr-codes/url-qr-code';
 import ShareButtons from '@/social-share/share-buttons';
-import { ShortUrl } from '@prisma/client';
+import type { ShortUrl } from '@prisma/client';
 import Divider from '@/common/divider';
 import Paper from '@/common/paper';
 import UrlSummary from './url-summary';
