@@ -1,5 +1,5 @@
 // https://nextjs.org/docs/pages/building-your-application/configuring/eslint#lint-staged
-const path = require('path');
+const path = require('node:path');
 
 const buildEslintCommand = (filenames) =>
   `next lint --max-warnings 0 --fix --file ${filenames
