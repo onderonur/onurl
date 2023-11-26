@@ -1,12 +1,12 @@
 import type { BaseLinkProps } from './base-link';
-import BaseLink from './base-link';
+import { BaseLink } from './base-link';
 import { FiExternalLink } from 'react-icons/fi';
 
 type ExternalLinkProps = BaseLinkProps & {
   hasIcon?: boolean;
 };
 
-export default function ExternalLink({
+export function ExternalLink({
   href,
   hasIcon,
   children,
@@ -16,7 +16,7 @@ export default function ExternalLink({
     <BaseLink {...rest} href={href} target="_blank" rel="noopener noreferrer">
       {children}
       {hasIcon ? (
-        <FiExternalLink className="inline ml-1 align-baseline" />
+        <FiExternalLink className="ml-1 inline align-baseline" />
       ) : null}
     </BaseLink>
   );

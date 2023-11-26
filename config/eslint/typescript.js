@@ -1,5 +1,6 @@
 const { resolve } = require('node:path');
 
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   overrides: [
     {
@@ -10,7 +11,7 @@ module.exports = {
       // https://stackoverflow.com/a/64488474/10876256
       files: ['*.ts?(x)'],
       parserOptions: {
-        project: resolve(__dirname, '../../tsconfig.json'),
+        project: resolve(process.cwd(), 'tsconfig.json'),
       },
       plugins: ['deprecation'],
       // Contains all of recommended, recommended-type-checked, and strict,

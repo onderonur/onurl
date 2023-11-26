@@ -1,7 +1,7 @@
-import Button from '@/common/button';
+import { Button } from '@/common/button';
 import { useFormStatus } from 'react-dom';
 
-export default function SubmitButton() {
+export function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (

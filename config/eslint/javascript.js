@@ -1,3 +1,4 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: ['eslint:recommended'],
   rules: {
@@ -14,7 +15,5 @@ module.exports = {
     'prefer-template': 'warn',
     'no-nested-ternary': 'warn',
     'no-empty': 'warn',
-    'import/no-duplicates': 'warn',
-    'import/newline-after-import': 'warn',
   },
 };

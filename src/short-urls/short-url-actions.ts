@@ -6,7 +6,7 @@ import {
   shortUrlInputSchema,
   DEFAULT_ALIAS_LENGTH,
 } from '@/short-urls/short-url-utils';
-import connectToDb from '@/db/connect-to-db';
+import { connectToDb } from '@/db/connect-to-db';
 import { goTry } from 'go-try';
 import { isUniqueConstraintError } from '@/db/db-utils';
 import { getShortUrl } from './short-url-fetchers';

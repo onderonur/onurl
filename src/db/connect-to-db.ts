@@ -15,7 +15,7 @@ declare global {
   }>;
 }
 
-export default async function connectToDb() {
+export async function connectToDb() {
   if (!global.db) {
     global.db = { prisma: new PrismaClient(), promise: null };
   }

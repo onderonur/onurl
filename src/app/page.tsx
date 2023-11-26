@@ -1,5 +1,5 @@
-import Hero from '@/common/hero';
-import ShortUrlBuilder from '@/short-urls/short-ur-builder';
+import { Hero } from '@/common/hero';
+import { ShortUrlBuilder } from '@/short-urls/short-ur-builder';
 
 export default function HomePage() {
   return (

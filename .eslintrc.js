@@ -1,9 +1,10 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
-  plugins: ['unicorn'],
   extends: [
     // https://nextjs.org/docs/pages/building-your-application/configuring/eslint#additional-configurations
     './config/eslint/javascript',
     './config/eslint/typescript',
+    './config/eslint/import',
     './config/eslint/unicorn',
     'prettier',
     'next/core-web-vitals',

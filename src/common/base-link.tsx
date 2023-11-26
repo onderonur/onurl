@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 export type BaseLinkProps = React.ComponentProps<typeof Link>;
 
-export default function BaseLink({ className, ...rest }: BaseLinkProps) {
+export function BaseLink({ className, ...rest }: BaseLinkProps) {
   return (
     <Link
       className={classNames(

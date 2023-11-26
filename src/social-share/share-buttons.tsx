@@ -21,7 +21,7 @@ type ShareButtonsProps = {
   url: Maybe<string>;
 };
 
-export default function ShareButtons({ url }: ShareButtonsProps) {
+export function ShareButtons({ url }: ShareButtonsProps) {
   const shareIconSize = '3.2rem';
 
   const shareIconProps = useMemo(
@@ -44,7 +44,7 @@ export default function ShareButtons({ url }: ShareButtonsProps) {
   }
 
   return (
-    <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex flex-wrap justify-center gap-2">
       <FacebookShareButton {...getShareButtonProps('Facebook')}>
         <FacebookIcon {...shareIconProps} />
       </FacebookShareButton>

@@ -5,14 +5,14 @@ type LoadingProps = {
   iconClassName?: string;
 };
 
-export default function Loading({ className, iconClassName }: LoadingProps) {
+export function Loading({ className, iconClassName }: LoadingProps) {
   return (
-    <div className={classNames(className, 'flex justify-center items-center')}>
+    <div className={classNames(className, 'flex items-center justify-center')}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={classNames(
           iconClassName,
-          'animate-spin text-primary-700 h-12 w-12',
+          'h-12 w-12 animate-spin text-primary-700',
         )}
         fill="none"
         viewBox="0 0 24 24"

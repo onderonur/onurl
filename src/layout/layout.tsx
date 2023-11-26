@@ -1,6 +1,6 @@
 import { APP_TITLE } from '@/common/common-utils';
-import ExternalLink from '@/common/external-link';
-import BaseLink from '@/common/base-link';
+import { ExternalLink } from '@/common/external-link';
+import { BaseLink } from '@/common/base-link';
 import {
   AiOutlineGithub,
   AiOutlineTwitter,
@@ -9,11 +9,11 @@ import {
 
 type LayoutProps = React.PropsWithChildren;
 
-export default function Layout({ children }: LayoutProps) {
+export function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="py-2 px-4 flex items-center">
-        <BaseLink href="/" className="font-black text-2xl text-primary-600">
+    <div className="flex min-h-screen flex-col">
+      <header className="flex items-center px-4 py-2">
+        <BaseLink href="/" className="text-2xl font-black text-primary-600">
           {APP_TITLE}
         </BaseLink>
         <div className="flex-grow" />
@@ -24,24 +24,24 @@ export default function Layout({ children }: LayoutProps) {
           <AiOutlineGithub className="h-8 w-8" />
         </ExternalLink>
       </header>
-      <main className="flex-1 mx-auto max-w-screen-sm w-full p-4">
+      <main className="mx-auto w-full max-w-screen-sm flex-1 p-4">
         {children}
       </main>
-      <footer className="p-6 flex gap-2 justify-center">
+      <footer className="flex justify-center gap-2 p-6">
         <ExternalLink
           href="https://linkedin.com/in/onderonur"
           aria-label="LinkedIn"
         >
-          <AiOutlineLinkedin className="w-8 h-8" />
+          <AiOutlineLinkedin className="h-8 w-8" />
         </ExternalLink>
         <ExternalLink
           href="https://twitter.com/onderonur_"
           aria-label="Twitter"
         >
-          <AiOutlineTwitter className="w-8 h-8" />
+          <AiOutlineTwitter className="h-8 w-8" />
         </ExternalLink>
         <ExternalLink href="https://github.com/onderonur" aria-label="GitHub">
-          <AiOutlineGithub className="w-8 h-8" />
+          <AiOutlineGithub className="h-8 w-8" />
         </ExternalLink>
       </footer>
     </div>

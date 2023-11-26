@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google';
-import Layout from '@/layout/layout';
+import { Layout } from '@/layout/layout';
 import { APP_TITLE } from '@/common/common-utils';
 import classNames from 'classnames';
 import '@/styles/global.css';
@@ -49,7 +49,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={classNames(inter.variable, 'font-sans')}>
+    <html
+      lang="en"
+      className={classNames(
+        inter.variable,
+        'font-sans',
+        // fluid font-size:
+        // 14px - 16px for 640px - 1024px viewport
+        'text-[clamp(0.875rem,0.667rem+0.52vw,1rem)]',
+      )}
+    >
       <body className="bg-gradient-to-r from-rose-100 to-teal-100">
         <Layout>{children}</Layout>
       </body>

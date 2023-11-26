@@ -1,7 +1,7 @@
 import { QRCodeSVG, QRCodeCanvas } from 'qrcode.react';
 import { saveAs } from 'file-saver';
 import { APP_TITLE } from '@/common/common-utils';
-import Button from '@/common/button';
+import { Button } from '@/common/button';
 import { AiOutlineCloudDownload } from 'react-icons/ai';
 
 const qrCodeId = 'qrCode';
@@ -23,7 +23,7 @@ type UrlQrCodeProps = {
   size: number;
 };
 
-export default function UrlQrCode({ url, size }: UrlQrCodeProps) {
+export function UrlQrCode({ url, size }: UrlQrCodeProps) {
   return (
     <>
       <QRCodeSVG className="h-full w-full" value={url} />
@@ -35,7 +35,7 @@ export default function UrlQrCode({ url, size }: UrlQrCodeProps) {
         <QRCodeCanvas value={url} size={size * 2} />
       </div>
       <Button
-        className="w-full mt-1"
+        className="mt-1 w-full"
         startIcon={<AiOutlineCloudDownload />}
         onClick={handleSaveQrCode}
       >

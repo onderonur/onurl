@@ -1,21 +1,18 @@
-import Alert from '@/common/alert';
+import { Alert } from '@/common/alert';
 import type { Maybe } from '@/common/common-types';
-import UrlQrCode from '@/qr-codes/url-qr-code';
-import ShareButtons from '@/social-share/share-buttons';
+import { UrlQrCode } from '@/qr-codes/url-qr-code';
+import { ShareButtons } from '@/social-share/share-buttons';
 import type { ShortUrl } from '@prisma/client';
-import Divider from '@/common/divider';
-import Paper from '@/common/paper';
-import UrlSummary from './url-summary';
+import { Divider } from '@/common/divider';
+import { Paper } from '@/common/paper';
+import { UrlSummary } from './url-summary';
 
 type ShortUrlResultProps = {
   shortUrl: Maybe<ShortUrl>;
   error: Maybe<string>;
 };
 
-export default function ShortUrlResult({
-  shortUrl,
-  error,
-}: ShortUrlResultProps) {
+export function ShortUrlResult({ shortUrl, error }: ShortUrlResultProps) {
   const url = shortUrl?.url;
   const alias = shortUrl?.alias;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -46,7 +43,7 @@ export default function ShortUrlResult({
       <UrlSummary title="New URL" url={shortenedUrl} canBeCopied />
       <Divider />
       <div className="flex flex-col items-center">
-        <div className="max-w-[256px] w-full">
+        <div className="w-full max-w-[256px]">
           <UrlQrCode url={shortenedUrl} size={256} />
         </div>
       </div>

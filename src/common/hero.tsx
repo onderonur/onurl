@@ -1,11 +1,11 @@
 import { URL_LIFETIME_IN_MINUTES } from '@/short-urls/short-url-utils';
 import { APP_TITLE } from './common-utils';
-import UrlShortenerLogo from './url-shortener-logo';
+import { UrlShortenerLogo } from './url-shortener-logo';
 
-export default function Hero() {
+export function Hero() {
   return (
     <div>
-      <div className="h-56 mb-4">
+      <div className="mb-4 h-56">
         <UrlShortenerLogo />
       </div>
       <div className="text-center font-semibold text-text-700">

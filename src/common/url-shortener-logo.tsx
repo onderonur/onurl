@@ -1,6 +1,6 @@
 import { APP_TITLE } from './common-utils';
 
-export default function UrlShortenerLogo() {
+export function UrlShortenerLogo() {
   return (
     <svg
       id="a5349118-8809-40c5-ab34-fa23ee5ede74"

@@ -1,4 +1,4 @@
-import connectToDb from '@/db/connect-to-db';
+import { connectToDb } from '@/db/connect-to-db';
 import { cache } from 'react';
 
 export const getShortUrl = cache(async (alias: string) => {

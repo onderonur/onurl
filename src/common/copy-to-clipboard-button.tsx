@@ -1,4 +1,4 @@
-import Button from '@/common/button';
+import { Button } from '@/common/button';
 import type { Maybe } from '@/common/common-types';
 import { useRef, useState } from 'react';
 import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
@@ -7,9 +7,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 type CopyToClipboardButtonProps = Pick<Props, 'text'>;
 
-export default function CopyToClipboardButton({
-  text,
-}: CopyToClipboardButtonProps) {
+export function CopyToClipboardButton({ text }: CopyToClipboardButtonProps) {
   const [hasCopied, setHasCopied] = useState(false);
   const timerRef = useRef<Maybe<NodeJS.Timeout>>(null);
 
