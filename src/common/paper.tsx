@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type PaperProps = React.PropsWithChildren<{
   className?: string;
@@ -7,7 +7,7 @@ type PaperProps = React.PropsWithChildren<{
 export function Paper({ className, children }: PaperProps) {
   return (
     <div
-      className={classNames(
+      className={twMerge(
         'rounded-md border border-border-300 bg-white p-5',
         className,
       )}

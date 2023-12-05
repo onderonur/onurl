@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { AiOutlineWarning, AiOutlineCheckCircle } from 'react-icons/ai';
+import { twJoin } from 'tailwind-merge';
 
 const IconsByType = {
   success: AiOutlineCheckCircle,
@@ -16,10 +16,11 @@ export function Alert({ type, message }: AlertProps) {
 
   return (
     <div
-      className={classNames(
+      className={twJoin(
         'flex items-center gap-3 rounded-sm p-4 font-semibold',
-        type === 'success' && 'bg-success-100 text-success-700',
-        type === 'error' && 'bg-error-100 text-error-700',
+        type === 'success'
+          ? 'bg-success-100 text-success-700'
+          : type === 'error' && 'bg-error-100 text-error-700',
       )}
     >
       <IconComponent className="h-6 w-6 flex-none" />

@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import { createSafeContext } from '@/common/safe-context';
 import type { Maybe } from '@/common/common-types';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 export type FormControlContextValue = {
   isRequired?: boolean;
@@ -51,7 +51,7 @@ export function FormLabel({ className, children, ...rest }: FormLabel) {
   return (
     <label
       htmlFor={ids.input}
-      className={classNames(className, 'font-semibold text-slate-700')}
+      className={twMerge('font-semibold text-slate-700', className)}
       {...rest}
     >
       {children} {isRequired ? <span className="text-error-600">*</span> : null}

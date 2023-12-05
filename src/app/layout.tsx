@@ -1,9 +1,9 @@
 import { Inter } from 'next/font/google';
 import { Layout } from '@/layout/layout';
 import { APP_TITLE } from '@/common/common-utils';
-import classNames from 'classnames';
 import '@/styles/global.css';
 import type { Viewport } from 'next';
+import { twJoin } from 'tailwind-merge';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={classNames(
+      className={twJoin(
         inter.variable,
         'font-sans',
         // fluid font-size:

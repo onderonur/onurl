@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 type LoadingProps = {
   className?: string;
@@ -7,12 +7,12 @@ type LoadingProps = {
 
 export function Loading({ className, iconClassName }: LoadingProps) {
   return (
-    <div className={classNames(className, 'flex items-center justify-center')}>
+    <div className={twMerge('flex items-center justify-center', className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={classNames(
-          iconClassName,
+        className={twMerge(
           'h-12 w-12 animate-spin text-primary-700',
+          iconClassName,
         )}
         fill="none"
         viewBox="0 0 24 24"
