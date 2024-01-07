@@ -20,17 +20,12 @@ module.exports = {
       extends: ['plugin:@typescript-eslint/strict-type-checked'],
       rules: {
         'deprecation/deprecation': 'warn',
-        '@typescript-eslint/no-unused-vars': 'warn',
-        '@typescript-eslint/require-await': 'warn',
         '@typescript-eslint/prefer-destructuring': 'warn',
         '@typescript-eslint/consistent-type-imports': 'warn',
         '@typescript-eslint/no-misused-promises': [
           'warn',
           { checksVoidReturn: false },
         ],
-        '@typescript-eslint/await-thenable': 'warn',
-        '@typescript-eslint/no-confusing-void-expression': 'warn',
-        '@typescript-eslint/no-unnecessary-condition': 'off',
       },
     },
   ],

@@ -9,6 +9,7 @@ module.exports = {
     'prettier',
     'next/core-web-vitals',
   ],
+  plugins: ['only-warn'],
   reportUnusedDisableDirectives: true,
   // Files starting with . are ignored by default.
   // This was causing a warning for lint-staged

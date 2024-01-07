@@ -4,7 +4,7 @@ module.exports = {
   // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules
   rules: {
     'unicorn/filename-case': [
-      'error',
+      'warn',
       {
         case: 'kebabCase',
       },
