@@ -2,6 +2,7 @@
 module.exports = {
   singleQuote: true,
   trailingComma: 'all',
+  endOfLine: 'lf',
   plugins: [
     'prettier-plugin-packagejson',
     // Should be the last one.

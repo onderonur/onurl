@@ -34,16 +34,12 @@ export function Button({
       disabled={disabled || isLoading}
       {...rest}
     >
-      {startIcon ? (
-        <span className="relative bg-slate-50">{startIcon}</span>
-      ) : null}
+      {startIcon ? <span className="relative">{startIcon}</span> : null}
       {children}
       {isLoading ? (
         <Loading
           className="absolute inset-0"
-          iconClassName={twJoin(
-            size === 'default' ? 'h-8 w-8' : size === 'small' && 'h-4 w-4',
-          )}
+          iconClassName={twJoin(size === 'default' ? 'h-8 w-8' : 'h-4 w-4')}
         />
       ) : null}
     </button>
