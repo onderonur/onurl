@@ -1,3 +1,4 @@
+import type { Maybe } from '@/common/common-types';
 import {
   FormControl,
   FormErrorMessage,
@@ -6,9 +7,8 @@ import {
 import { Input } from '@/form-items/input';
 import { SubmitButton } from '@/form-items/submit-button';
 import type { FieldErrors } from '@/server-actions/server-action-types';
-import type { ShortUrlInput } from './short-url-utils';
-import type { Maybe } from '@/common/common-types';
 import { forwardRef } from 'react';
+import type { ShortUrlInput } from './short-url-utils';
 
 type ShortUrlFormProps = {
   action: React.FormHTMLAttributes<HTMLFormElement>['action'];

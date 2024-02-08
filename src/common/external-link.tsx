@@ -1,6 +1,6 @@
+import { FiExternalLink } from 'react-icons/fi';
 import type { BaseLinkProps } from './base-link';
 import { BaseLink } from './base-link';
-import { FiExternalLink } from 'react-icons/fi';
 
 type ExternalLinkProps = BaseLinkProps & {
   hasIcon?: boolean;

@@ -1,5 +1,5 @@
-import { Loading } from './loading';
 import { twJoin, twMerge } from 'tailwind-merge';
+import { Loading } from './loading';
 
 type ButtonProps = React.ComponentProps<'button'> & {
   size?: 'default' | 'small';

@@ -1,21 +1,21 @@
+import type { Maybe } from '@/common/common-types';
 import { useCallback, useMemo } from 'react';
 import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  EmailShareButton,
   EmailIcon,
-  LinkedinShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
   LinkedinIcon,
-  RedditShareButton,
-  RedditIcon,
-  TumblrShareButton,
-  TumblrIcon,
-  MailruShareButton,
+  LinkedinShareButton,
   MailruIcon,
+  MailruShareButton,
+  RedditIcon,
+  RedditShareButton,
+  TumblrIcon,
+  TumblrShareButton,
+  TwitterIcon,
+  TwitterShareButton,
 } from 'react-share';
-import type { Maybe } from '@/common/common-types';
 
 type ShareButtonsProps = {
   url: Maybe<string>;

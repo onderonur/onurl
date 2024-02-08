@@ -1,9 +1,9 @@
 import { Button } from '@/common/button';
 import type { Maybe } from '@/common/common-types';
 import { useRef, useState } from 'react';
-import { AiOutlineCopy, AiOutlineCheck } from 'react-icons/ai';
 import type { Props } from 'react-copy-to-clipboard';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { AiOutlineCheck, AiOutlineCopy } from 'react-icons/ai';
 
 type CopyToClipboardButtonProps = Pick<Props, 'text'>;
 

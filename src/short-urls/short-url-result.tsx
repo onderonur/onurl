@@ -1,10 +1,10 @@
 import { Alert } from '@/common/alert';
 import type { Maybe } from '@/common/common-types';
+import { Divider } from '@/common/divider';
+import { Paper } from '@/common/paper';
 import { UrlQrCode } from '@/qr-codes/url-qr-code';
 import { ShareButtons } from '@/social-share/share-buttons';
 import type { ShortUrl } from '@prisma/client';
-import { Divider } from '@/common/divider';
-import { Paper } from '@/common/paper';
 import { UrlSummary } from './url-summary';
 
 type ShortUrlResultProps = {

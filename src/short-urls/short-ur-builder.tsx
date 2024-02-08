@@ -1,10 +1,10 @@
 'use client';
 
-import { ShortUrlResult } from './short-url-result';
+import { useEffect, useRef } from 'react';
+import { useFormState } from 'react-dom';
 import { createShortUrl } from './short-url-actions';
 import { ShortUrlForm } from './short-url-form';
-import { useFormState } from 'react-dom';
-import { useEffect, useRef } from 'react';
+import { ShortUrlResult } from './short-url-result';
 
 export function ShortUrlBuilder() {
   const formRef = useRef<React.ElementRef<'form'>>(null);

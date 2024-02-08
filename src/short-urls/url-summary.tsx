@@ -1,6 +1,6 @@
 import type { Maybe } from '@/common/common-types';
-import { ExternalLink } from '@/common/external-link';
 import { CopyToClipboardButton } from '@/common/copy-to-clipboard-button';
+import { ExternalLink } from '@/common/external-link';
 
 type ShortUrlResultProps = {
   title: string;

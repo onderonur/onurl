@@ -1,4 +1,4 @@
-import { AiOutlineWarning, AiOutlineCheckCircle } from 'react-icons/ai';
+import { AiOutlineCheckCircle, AiOutlineWarning } from 'react-icons/ai';
 import { twJoin } from 'tailwind-merge';
 
 const IconsByType = {

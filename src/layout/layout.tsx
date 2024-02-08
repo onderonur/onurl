@@ -1,10 +1,10 @@
+import { BaseLink } from '@/common/base-link';
 import { APP_TITLE } from '@/common/common-utils';
 import { ExternalLink } from '@/common/external-link';
-import { BaseLink } from '@/common/base-link';
 import {
   AiOutlineGithub,
-  AiOutlineTwitter,
   AiOutlineLinkedin,
+  AiOutlineTwitter,
 } from 'react-icons/ai';
 
 type LayoutProps = React.PropsWithChildren;

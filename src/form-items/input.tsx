@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { useFormControl } from './form-control';
 import { twMerge } from 'tailwind-merge';
+import { useFormControl } from './form-control';
 
 type InputProps = React.ComponentProps<'input'>;
 

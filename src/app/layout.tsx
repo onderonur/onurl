@@ -1,8 +1,8 @@
-import { Inter } from 'next/font/google';
-import { Layout } from '@/layout/layout';
 import { APP_TITLE } from '@/common/common-utils';
+import { Layout } from '@/layout/layout';
 import '@/styles/global.css';
 import type { Viewport } from 'next';
+import { Inter } from 'next/font/google';
 import { twJoin } from 'tailwind-merge';
 
 const inter = Inter({
