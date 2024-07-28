@@ -1,6 +1,5 @@
 import type { Maybe } from '@/common/common-types';
-import { createSafeContext } from '@/common/safe-context';
-import { useId } from 'react';
+import { createContext, useContext, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export type FormControlContextValue = {
@@ -12,12 +11,13 @@ export type FormControlContextValue = {
   errorMessages: Maybe<string[]>;
 };
 
-const [FormControlContext, useFormControl] =
-  createSafeContext<FormControlContextValue>({
-    displayName: 'FormControlContext',
-  });
+const FormControlContext = createContext<FormControlContextValue>(
+  {} as FormControlContextValue,
+);
 
-export { useFormControl };
+export function useFormControl() {
+  return useContext(FormControlContext);
+}
 
 type FormControlProps = React.PropsWithChildren<
   Pick<FormControlContextValue, 'isRequired' | 'errorMessages'>

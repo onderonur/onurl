@@ -1,15 +1,14 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  plugins: ['unicorn'],
+  extends: ['plugin:unicorn/recommended'],
   // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main?tab=readme-ov-file#rules
   rules: {
-    'unicorn/filename-case': [
-      'warn',
-      {
-        case: 'kebabCase',
-      },
-    ],
-    'unicorn/prefer-node-protocol': 'warn',
-    'unicorn/catch-error-name': 'warn',
+    'unicorn/prevent-abbreviations': 'off',
+    'unicorn/no-null': 'off',
+    'unicorn/prefer-module': 'off',
+    'unicorn/explicit-length-check': 'off',
+    'unicorn/prefer-ternary': 'off',
+    'unicorn/no-array-for-each': 'off',
+    'unicorn/prefer-export-from': 'off',
   },
 };
