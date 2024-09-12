@@ -1,6 +1,6 @@
-import { APP_TITLE } from '@/common/common-utils';
-import { Layout } from '@/layout/layout';
-import '@/styles/global.css';
+import { APP_TITLE } from '@/core/core.utils';
+import { Layout } from '@/core/layout/components/layout';
+import '@/core/styles/globals.css';
 import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { twJoin } from 'tailwind-merge';

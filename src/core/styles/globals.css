@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a,
+  input,
+  button {
+    @apply focus-visible:outline-offset-2 focus-visible:outline-primary-300;
+  }
+}
