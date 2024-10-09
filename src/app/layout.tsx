@@ -1,5 +1,5 @@
-import { APP_TITLE } from '@/core/core.utils';
 import { Layout } from '@/core/layout/components/layout';
+import { APP_TITLE } from '@/core/shared/shared.utils';
 import '@/core/styles/globals.css';
 import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';

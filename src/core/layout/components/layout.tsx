@@ -1,4 +1,4 @@
-import { APP_TITLE } from '@/core/core.utils';
+import { APP_TITLE } from '@/core/shared/shared.utils';
 import { BaseLink } from '@/core/ui/components/base-link';
 import { ExternalLink } from '@/core/ui/components/external-link';
 import {

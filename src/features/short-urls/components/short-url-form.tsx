@@ -1,5 +1,4 @@
 import type { FieldErrors } from '@/core/actions/actions.types';
-import type { Maybe } from '@/core/core.types';
 import {
   FormControl,
   FormErrorMessage,
@@ -7,6 +6,7 @@ import {
 } from '@/core/forms/components/form-control';
 import { Input } from '@/core/forms/components/input';
 import { SubmitButton } from '@/core/forms/components/submit-button';
+import type { Maybe } from '@/core/shared/shared.types';
 import { forwardRef } from 'react';
 import type { ShortUrlInput } from '../short-urls.schemas';
 

@@ -1,4 +1,4 @@
-import { APP_TITLE } from '@/core/core.utils';
+import { APP_TITLE } from '@/core/shared/shared.utils';
 import { UrlShortenerLogo } from '@/core/ui/components/url-shortener-logo';
 import { URL_LIFETIME_IN_MINUTES } from '@/features/short-urls/short-urls.utils';
 
