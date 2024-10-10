@@ -2,7 +2,7 @@ import type { Maybe } from '@/core/shared/shared.types';
 import { createContext, useContext, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export type FormControlContextValue = {
+type FormControlContextValue = {
   isRequired?: boolean;
   ids: {
     input: string;

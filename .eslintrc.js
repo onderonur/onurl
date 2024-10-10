@@ -11,5 +11,4 @@ module.exports = {
   ],
   plugins: ['only-warn'],
   reportUnusedDisableDirectives: true,
-  ignorePatterns: ['src/gql'],
 };

@@ -1,4 +1,16 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  // Use the files.associations setting to tell VS Code to always open .css files in Tailwind CSS mode:
+  // https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  // By default VS Code will not trigger completions when editing "string" content,
+  // for example within JSX attribute values.
+  // Updating the editor.quickSuggestions setting may improve your experience:
+  // https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
 }
