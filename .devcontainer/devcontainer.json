@@ -22,7 +22,8 @@
         "esbenp.prettier-vscode",
         "Prisma.prisma",
         "foxundermoon.shell-format",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
@@ -32,7 +33,7 @@
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // https://www.youtube.com/watch?v=9qRy_kxVCK8
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "pnpm install"
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"

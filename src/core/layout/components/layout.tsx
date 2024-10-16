@@ -21,7 +21,7 @@ export function Layout({ children }: LayoutProps) {
           href="https://github.com/onderonur/onurl"
           aria-label="Check the source code on GitHub"
         >
-          <AiOutlineGithub className="h-8 w-8" />
+          <AiOutlineGithub className="size-8" />
         </ExternalLink>
       </header>
       <main className="mx-auto w-full max-w-screen-sm flex-1 p-4">
@@ -32,16 +32,16 @@ export function Layout({ children }: LayoutProps) {
           href="https://linkedin.com/in/onderonur"
           aria-label="LinkedIn"
         >
-          <AiOutlineLinkedin className="h-8 w-8" />
+          <AiOutlineLinkedin className="size-8" />
         </ExternalLink>
         <ExternalLink
           href="https://twitter.com/onderonur_"
           aria-label="Twitter"
         >
-          <AiOutlineTwitter className="h-8 w-8" />
+          <AiOutlineTwitter className="size-8" />
         </ExternalLink>
         <ExternalLink href="https://github.com/onderonur" aria-label="GitHub">
-          <AiOutlineGithub className="h-8 w-8" />
+          <AiOutlineGithub className="size-8" />
         </ExternalLink>
       </footer>
     </div>

@@ -39,7 +39,7 @@ export function Button({
       {isLoading ? (
         <Loading
           className="absolute inset-0"
-          iconClassName={twJoin(size === 'default' ? 'h-8 w-8' : 'h-4 w-4')}
+          iconClassName={twJoin(size === 'default' ? 'size-8' : 'size-4')}
         />
       ) : null}
     </button>

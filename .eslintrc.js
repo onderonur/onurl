@@ -8,6 +8,7 @@ module.exports = {
     './config/eslint/unicorn',
     './config/eslint/prettier',
     'next/core-web-vitals',
+    'next/typescript',
   ],
   plugins: ['only-warn'],
   reportUnusedDisableDirectives: true,

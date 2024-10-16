@@ -25,15 +25,15 @@ First, you need to set a MongoDB connection string for `DATABASE_URL` in `.env.d
 
 Install dependencies:
 
-### `npm install`
+### `pnpm install`
 
 Create db constaints (like `@unique` indexes):
 
-### `npm run db:migrate`
+### `pnpm db:migrate`
 
 Run it in development mode:
 
-### `npm run dev`
+### `pnpm dev`
 
 ## 🚀 Build
 
@@ -42,11 +42,11 @@ First, we need to set a MongoDB connection string for `DATABASE_URL` in `.env.pr
 After that, we need to run the below command first to create a production build:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 And we can run the app in `production` mode by running:
 
 ```bash
-npm start
+pnpm start
 ```

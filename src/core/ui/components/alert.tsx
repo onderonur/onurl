@@ -23,7 +23,7 @@ export function Alert({ type, message }: AlertProps) {
           : 'bg-error-100 text-error-700',
       )}
     >
-      <IconComponent className="h-6 w-6 flex-none" />
+      <IconComponent className="size-6 flex-none" />
       {message}
     </div>
   );
