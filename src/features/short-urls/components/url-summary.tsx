@@ -9,9 +9,7 @@ type UrlSummaryProps = {
 };
 
 export function UrlSummary({ title, url, canBeCopied }: UrlSummaryProps) {
-  if (!url) {
-    return null;
-  }
+  if (!url) return null;
 
   return (
     <div className="flex flex-wrap items-start justify-between gap-2">

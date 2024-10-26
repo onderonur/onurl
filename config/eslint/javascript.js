@@ -9,5 +9,6 @@ module.exports = {
     'no-param-reassign': 'warn',
     'prefer-template': 'warn',
     'no-nested-ternary': 'warn',
+    'no-else-return': 'warn',
   },
 };

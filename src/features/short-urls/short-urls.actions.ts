@@ -16,7 +16,7 @@ const nanoid = customAlphabet(
 );
 
 export async function createShortUrl(
-  currentState: ServerActionState<ShortUrlInput, ShortUrl> | null,
+  previousState: ServerActionState<ShortUrlInput, ShortUrl> | null,
   formData: FormData,
 ): Promise<ServerActionState<ShortUrlInput, ShortUrl>> {
   const input = shortUrlInputSchema.safeParse({
@@ -25,7 +25,11 @@ export async function createShortUrl(
   });
 
   if (!input.success) {
-    return { success: false, fieldErrors: input.error.format() };
+    return {
+      success: false,
+      fieldErrors: input.error.format(),
+      formData,
+    };
   }
 
   const { data } = input;
@@ -33,7 +37,7 @@ export async function createShortUrl(
   const parsedUrl = new URL(data.url);
 
   if (parsedUrl.origin === process.env.NEXT_PUBLIC_BASE_URL) {
-    return { success: false, error: 'Invalid host' };
+    return { success: false, error: 'Invalid host', formData };
   }
 
   const prisma = await connectToDb();
@@ -53,10 +57,11 @@ export async function createShortUrl(
       return {
         success: false,
         error: `"${data.customAlias}" is already in use. Please use another alias.`,
+        formData,
       };
     }
 
-    return { success: false, error: error.message };
+    return { success: false, error: error.message, formData };
   }
 
   return { success: true, data: shortUrl };
@@ -67,9 +72,7 @@ export async function increaseShortUrlClicks(alias: string) {
 
   const shortUrl = await getShortUrl(alias);
 
-  if (!shortUrl) {
-    return;
-  }
+  if (!shortUrl) return;
 
   await prisma.shortUrl.update({
     where: { alias },

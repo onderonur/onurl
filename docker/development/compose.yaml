@@ -1,0 +1,15 @@
+name: onurl-development
+
+services:
+  db:
+    build: ./mongodb_replica
+    restart: unless-stopped
+    env_file:
+      - ../../.env.development
+    ports:
+      - 27018:27018
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:

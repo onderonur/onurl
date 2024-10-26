@@ -7,7 +7,9 @@ import {
   AiOutlineTwitter,
 } from 'react-icons/ai';
 
-type LayoutProps = React.PropsWithChildren;
+type LayoutProps = {
+  children: React.ReactNode;
+};
 
 export function Layout({ children }: LayoutProps) {
   return (

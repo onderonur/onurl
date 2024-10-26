@@ -1,5 +1,5 @@
 import type { Maybe } from '@/core/shared/shared.types';
-import { createContext, useContext, useId } from 'react';
+import { createContext, use, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type FormControlContextValue = {
@@ -11,17 +11,16 @@ type FormControlContextValue = {
   errorMessages: Maybe<string[]>;
 };
 
-const FormControlContext = createContext<FormControlContextValue>(
+export const FormControlContext = createContext<FormControlContextValue>(
   {} as FormControlContextValue,
 );
 
-export function useFormControl() {
-  return useContext(FormControlContext);
-}
-
-type FormControlProps = React.PropsWithChildren<
-  Pick<FormControlContextValue, 'isRequired' | 'errorMessages'>
->;
+type FormControlProps = Pick<
+  FormControlContextValue,
+  'isRequired' | 'errorMessages'
+> & {
+  children: React.ReactNode;
+};
 
 export function FormControl({
   errorMessages,
@@ -31,7 +30,7 @@ export function FormControl({
   const id = useId();
 
   return (
-    <FormControlContext.Provider
+    <FormControlContext
       value={{
         ...rest,
         errorMessages,
@@ -39,14 +38,14 @@ export function FormControl({
       }}
     >
       <div className="flex flex-col gap-1">{children}</div>
-    </FormControlContext.Provider>
+    </FormControlContext>
   );
 }
 
 type FormLabel = React.ComponentProps<'label'>;
 
 export function FormLabel({ className, children, ...rest }: FormLabel) {
-  const { ids, isRequired } = useFormControl();
+  const { ids, isRequired } = use(FormControlContext);
 
   return (
     <label
@@ -60,11 +59,9 @@ export function FormLabel({ className, children, ...rest }: FormLabel) {
 }
 
 export function FormErrorMessage() {
-  const { ids, errorMessages } = useFormControl();
+  const { ids, errorMessages } = use(FormControlContext);
 
-  if (!errorMessages?.length) {
-    return null;
-  }
+  if (!errorMessages?.length) return null;
 
   // TODO: Will check example aria attributes and html tags etc.
   // And will apply to all form items.

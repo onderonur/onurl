@@ -26,9 +26,7 @@ export function ShortUrlResult({ shortUrl, error }: ShortUrlResultProps) {
     );
   }
 
-  if (!url || !shortenedUrl) {
-    return null;
-  }
+  if (!url || !shortenedUrl) return null;
 
   return (
     <Paper className="flex flex-col gap-2">

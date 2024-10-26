@@ -32,9 +32,7 @@ export function ShareButtons({ url }: ShareButtonsProps) {
     };
   }
 
-  if (!url) {
-    return null;
-  }
+  if (!url) return null;
 
   return (
     <div className="flex flex-wrap justify-center gap-2">

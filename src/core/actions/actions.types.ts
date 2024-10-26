@@ -8,4 +8,5 @@ export type ServerActionState<Input, Data> =
       success: false;
       error?: string;
       fieldErrors?: FieldErrors<Input>;
+      formData: FormData;
     };

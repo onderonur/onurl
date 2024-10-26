@@ -1,8 +1,9 @@
 import { twMerge } from 'tailwind-merge';
 
-type PaperProps = React.PropsWithChildren<{
+type PaperProps = {
   className?: string;
-}>;
+  children: React.ReactNode;
+};
 
 export function Paper({ className, children }: PaperProps) {
   return (

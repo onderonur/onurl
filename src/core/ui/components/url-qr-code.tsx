@@ -7,15 +7,13 @@ import { AiOutlineCloudDownload } from 'react-icons/ai';
 const qrCodeId = 'qrCode';
 
 const handleSaveQrCode = () => {
-  // TODO: Will fix these
-  // eslint-disable-next-line unicorn/prefer-query-selector
-  const canvasContainer = document.getElementById(qrCodeId) as HTMLDivElement;
-  // eslint-disable-next-line unicorn/prefer-query-selector
-  const canvas = canvasContainer.getElementsByTagName('canvas').item(0);
+  const canvasContainer = document.querySelector(
+    `#${qrCodeId}`,
+  ) as HTMLDivElement;
 
-  if (!canvas) {
-    return;
-  }
+  const canvas = canvasContainer.querySelector('canvas');
+
+  if (!canvas) return;
 
   const png = canvas.toDataURL();
   saveAs(png, `${APP_TITLE}-QRCode-${Date.now()}`);

@@ -19,7 +19,7 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.vercel.app/)
 
 ## ⌨️ Development
 
-TODO: `README` will be updated for using Dev Containers.
+TODO: `README` will be updated for using Docker.
 
 First, you need to set a MongoDB connection string for `DATABASE_URL` in `.env.development`.
 

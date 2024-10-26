@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   images: {
     // We set image as `unoptimized` to not exceed the
     // fair usage policy of vercel about image optimization.

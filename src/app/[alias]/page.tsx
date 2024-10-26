@@ -4,13 +4,13 @@ import { isShortUrlExpired } from '@/features/short-urls/short-urls.utils';
 import { notFound, permanentRedirect } from 'next/navigation';
 
 type AliasPageProps = {
-  params: {
+  params: Promise<{
     alias: string;
-  };
+  }>;
 };
 
-export default async function AliasPage({ params }: AliasPageProps) {
-  const { alias } = params;
+export default async function AliasPage(props: AliasPageProps) {
+  const { alias } = await props.params;
 
   const shortUrl = await getShortUrl(alias);
 
