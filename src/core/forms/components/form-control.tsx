@@ -11,9 +11,15 @@ type FormControlContextValue = {
   errorMessages: Maybe<string[]>;
 };
 
-export const FormControlContext = createContext<FormControlContextValue>(
-  {} as FormControlContextValue,
+export const FormControlContext = createContext<FormControlContextValue | null>(
+  null,
 );
+
+export function useFormControlContext() {
+  const value = use(FormControlContext);
+  if (!value) throw new Error('FormControlContext not found');
+  return value;
+}
 
 type FormControlProps = Pick<
   FormControlContextValue,
@@ -45,7 +51,7 @@ export function FormControl({
 type FormLabel = React.ComponentProps<'label'>;
 
 export function FormLabel({ className, children, ...rest }: FormLabel) {
-  const { ids, isRequired } = use(FormControlContext);
+  const { ids, isRequired } = useFormControlContext();
 
   return (
     <label
@@ -59,7 +65,7 @@ export function FormLabel({ className, children, ...rest }: FormLabel) {
 }
 
 export function FormErrorMessage() {
-  const { ids, errorMessages } = use(FormControlContext);
+  const { ids, errorMessages } = useFormControlContext();
 
   if (!errorMessages?.length) return null;
 

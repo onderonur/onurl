@@ -1,11 +1,10 @@
-import { FormControlContext } from '@/core/forms/components/form-control';
-import { use } from 'react';
+import { useFormControlContext } from '@/core/forms/components/form-control';
 import { twMerge } from 'tailwind-merge';
 
 type InputProps = React.ComponentProps<'input'>;
 
 export function Input({ className, ...rest }: InputProps) {
-  const { ids, isRequired, errorMessages } = use(FormControlContext);
+  const { ids, isRequired, errorMessages } = useFormControlContext();
   const isInvalid = !!errorMessages?.length;
 
   return (

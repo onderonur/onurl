@@ -1,4 +1,4 @@
-import { Layout } from '@/core/layout/components/layout';
+import { Layout } from '@/core/layouts/components/layout';
 import { APP_TITLE } from '@/core/shared/shared.utils';
 import '@/core/styles/globals.css';
 import type { Viewport } from 'next';
