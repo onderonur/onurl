@@ -1,4 +1,4 @@
-import { APP_TITLE } from '@/core/shared/shared.utils';
+import { APP_TITLE } from '@/core/shared/utils';
 
 export function UrlShortenerLogo() {
   return (

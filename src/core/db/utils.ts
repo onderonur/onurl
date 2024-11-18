@@ -1,5 +1,5 @@
 import type { Prisma } from '@prisma/client';
-import { prismaErrorSchema } from './db.schemas';
+import { prismaErrorSchema } from './schemas';
 
 export function isUniqueConstraintError(
   error: unknown,

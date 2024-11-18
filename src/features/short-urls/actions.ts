@@ -1,15 +1,15 @@
 'use server';
 
-import type { ServerActionState } from '@/core/actions/actions.types';
+import type { ServerActionState } from '@/core/actions/types';
 import { connectToDb } from '@/core/db/db';
-import { isUniqueConstraintError } from '@/core/db/db.utils';
-import { getShortUrl } from '@/features/short-urls/short-urls.data';
-import { DEFAULT_ALIAS_LENGTH } from '@/features/short-urls/short-urls.utils';
+import { isUniqueConstraintError } from '@/core/db/utils';
+import { getShortUrl } from '@/features/short-urls/data';
+import { DEFAULT_ALIAS_LENGTH } from '@/features/short-urls/utils';
 import type { ShortUrl } from '@prisma/client';
 import { goTry } from 'go-try';
 import { customAlphabet } from 'nanoid';
-import type { ShortUrlInput } from './short-urls.schemas';
-import { shortUrlInputSchema } from './short-urls.schemas';
+import type { ShortUrlInput } from './schemas';
+import { shortUrlInputSchema } from './schemas';
 
 const nanoid = customAlphabet(
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',

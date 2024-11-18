@@ -1,4 +1,4 @@
-import type { Maybe } from '@/core/shared/shared.types';
+import type { Maybe } from '@/core/shared/types';
 import { PrismaClient } from '@prisma/client';
 
 const { DATABASE_URL } = process.env;

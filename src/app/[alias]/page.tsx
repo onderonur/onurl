@@ -1,6 +1,6 @@
-import { increaseShortUrlClicks } from '@/features/short-urls/short-urls.actions';
-import { getShortUrl } from '@/features/short-urls/short-urls.data';
-import { isShortUrlExpired } from '@/features/short-urls/short-urls.utils';
+import { increaseShortUrlClicks } from '@/features/short-urls/actions';
+import { getShortUrl } from '@/features/short-urls/data';
+import { isShortUrlExpired } from '@/features/short-urls/utils';
 import { notFound, permanentRedirect } from 'next/navigation';
 
 type AliasPageProps = {

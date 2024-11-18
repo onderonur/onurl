@@ -1,4 +1,4 @@
-import type { Maybe } from '@/core/shared/shared.types';
+import type { Maybe } from '@/core/shared/types';
 import { Alert } from '@/core/ui/components/alert';
 import { Divider } from '@/core/ui/components/divider';
 import { Paper } from '@/core/ui/components/paper';

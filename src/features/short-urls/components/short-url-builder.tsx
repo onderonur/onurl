@@ -1,8 +1,8 @@
 'use client';
 
+import { createShortUrl } from '@/features/short-urls/actions';
 import { ShortUrlForm } from '@/features/short-urls/components/short-url-form';
 import { ShortUrlResult } from '@/features/short-urls/components/short-url-result';
-import { createShortUrl } from '@/features/short-urls/short-urls.actions';
 import { useActionState } from 'react';
 
 export function ShortUrlBuilder() {

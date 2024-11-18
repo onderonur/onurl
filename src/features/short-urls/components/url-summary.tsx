@@ -1,4 +1,4 @@
-import type { Maybe } from '@/core/shared/shared.types';
+import type { Maybe } from '@/core/shared/types';
 import { CopyToClipboardButton } from '@/core/ui/components/copy-to-clipboard-button';
 import { ExternalLink } from '@/core/ui/components/external-link';
 

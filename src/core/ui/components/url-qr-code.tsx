@@ -1,4 +1,4 @@
-import { APP_TITLE } from '@/core/shared/shared.utils';
+import { APP_TITLE } from '@/core/shared/utils';
 import { Button } from '@/core/ui/components/button';
 import { saveAs } from 'file-saver';
 import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react';

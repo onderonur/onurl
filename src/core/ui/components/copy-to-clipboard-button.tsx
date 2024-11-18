@@ -1,4 +1,4 @@
-import type { Maybe } from '@/core/shared/shared.types';
+import type { Maybe } from '@/core/shared/types';
 import { Button } from '@/core/ui/components/button';
 import { useRef, useState } from 'react';
 import type { Props } from 'react-copy-to-clipboard';

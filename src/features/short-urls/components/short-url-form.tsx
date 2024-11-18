@@ -1,4 +1,4 @@
-import type { FieldErrors } from '@/core/actions/actions.types';
+import type { FieldErrors } from '@/core/actions/types';
 import {
   FormControl,
   FormErrorMessage,
@@ -6,9 +6,9 @@ import {
 } from '@/core/forms/components/form-control';
 import { Input } from '@/core/forms/components/input';
 import { SubmitButton } from '@/core/forms/components/submit-button';
-import type { Maybe } from '@/core/shared/shared.types';
+import type { Maybe } from '@/core/shared/types';
 import Form from 'next/form';
-import type { ShortUrlInput } from '../short-urls.schemas';
+import type { ShortUrlInput } from '../schemas';
 
 type ShortUrlFormProps = {
   action: NonNullable<React.FormHTMLAttributes<HTMLFormElement>['action']>;

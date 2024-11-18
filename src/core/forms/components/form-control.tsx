@@ -1,4 +1,4 @@
-import type { Maybe } from '@/core/shared/shared.types';
+import type { Maybe } from '@/core/shared/types';
 import { createContext, use, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
