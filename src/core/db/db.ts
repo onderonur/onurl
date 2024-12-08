@@ -16,15 +16,15 @@ declare global {
 }
 
 export async function connectToDb() {
-  if (!global.db) {
-    global.db = { prisma: new PrismaClient(), promise: null };
+  if (!globalThis.db) {
+    globalThis.db = { prisma: new PrismaClient(), promise: null };
   }
 
-  if (!global.db.promise) {
-    global.db.promise = global.db.prisma.$connect();
+  if (!globalThis.db.promise) {
+    globalThis.db.promise = globalThis.db.prisma.$connect();
   }
 
-  await global.db.promise;
+  await globalThis.db.promise;
 
-  return global.db.prisma;
+  return globalThis.db.prisma;
 }
