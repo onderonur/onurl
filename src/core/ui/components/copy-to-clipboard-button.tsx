@@ -26,13 +26,18 @@ export function CopyToClipboardButton({ text }: CopyToClipboardButtonProps) {
         }, 2000);
       }}
     >
-      <Button
-        className="ml-1"
-        startIcon={hasCopied ? <AiOutlineCheck /> : <AiOutlineCopy />}
-        size="small"
-        variant="outlined"
-      >
-        {hasCopied ? 'Copied' : 'Copy'}
+      <Button className="ml-1" size="small" variant="outline">
+        {hasCopied ? (
+          <>
+            <AiOutlineCheck />
+            Copied
+          </>
+        ) : (
+          <>
+            <AiOutlineCopy />
+            Copy
+          </>
+        )}
       </Button>
     </CopyToClipboard>
   );

@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 export type BaseLinkProps = React.ComponentProps<typeof Link>;
 
-export function BaseLink({ className, ...rest }: BaseLinkProps) {
+export function NextLink({ className, ...rest }: BaseLinkProps) {
   return (
     <Link
       className={twMerge(

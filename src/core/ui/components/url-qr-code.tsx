@@ -35,11 +35,8 @@ export function UrlQrCode({ url, size }: UrlQrCodeProps) {
       <div id={qrCodeId} hidden>
         <QRCodeCanvas value={url} size={size * 2} />
       </div>
-      <Button
-        className="mt-1 w-full"
-        startIcon={<AiOutlineCloudDownload />}
-        onClick={handleSaveQrCode}
-      >
+      <Button className="mt-1 w-full" onClick={handleSaveQrCode}>
+        <AiOutlineCloudDownload />
         Save
       </Button>
     </>

@@ -13,6 +13,7 @@ export const unicornConfig = [
       'unicorn/prefer-ternary': 'off',
       'unicorn/no-array-for-each': 'off',
       'unicorn/prefer-export-from': 'off',
+      'unicorn/prefer-global-this': 'off',
     },
   },
 ];

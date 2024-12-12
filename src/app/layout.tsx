@@ -53,7 +53,7 @@ export default function RootLayout({
       lang="en"
       className={twJoin(
         inter.variable,
-        'font-sans',
+        'font-sans antialiased',
         // fluid font-size:
         // 14px - 16px for 640px - 1024px viewport
         'text-[clamp(0.875rem,0.667rem+0.52vw,1rem)]',
