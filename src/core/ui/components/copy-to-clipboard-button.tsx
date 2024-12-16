@@ -1,6 +1,6 @@
-import type { Maybe } from '@/core/shared/types';
+import { wait } from '@/core/shared/utils';
 import { Button } from '@/core/ui/components/button';
-import { useRef, useState } from 'react';
+import { useTransition } from 'react';
 import type { Props } from 'react-copy-to-clipboard';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { AiOutlineCheck, AiOutlineCopy } from 'react-icons/ai';
@@ -8,26 +8,19 @@ import { AiOutlineCheck, AiOutlineCopy } from 'react-icons/ai';
 type CopyToClipboardButtonProps = Pick<Props, 'text'>;
 
 export function CopyToClipboardButton({ text }: CopyToClipboardButtonProps) {
-  const [hasCopied, setHasCopied] = useState(false);
-  const timerRef = useRef<Maybe<NodeJS.Timeout>>(null);
+  const [isPending, startTransition] = useTransition();
 
   return (
     <CopyToClipboard
       text={text}
       onCopy={() => {
-        setHasCopied(true);
-
-        if (timerRef.current) {
-          clearTimeout(timerRef.current);
-        }
-
-        timerRef.current = setTimeout(() => {
-          setHasCopied(false);
-        }, 2000);
+        startTransition(async () => {
+          await wait(2);
+        });
       }}
     >
       <Button className="ml-1" size="small" variant="outline">
-        {hasCopied ? (
+        {isPending ? (
           <>
             <AiOutlineCheck />
             Copied
