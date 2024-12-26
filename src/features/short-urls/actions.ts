@@ -15,10 +15,12 @@ const nanoid = customAlphabet(
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 );
 
+type CreateShortUrlState = ServerActionState<ShortUrlInput, ShortUrl>;
+
 export async function createShortUrl(
-  previousState: ServerActionState<ShortUrlInput, ShortUrl> | null,
+  previousState: CreateShortUrlState | null,
   formData: FormData,
-): Promise<ServerActionState<ShortUrlInput, ShortUrl>> {
+): Promise<CreateShortUrlState> {
   const input = shortUrlInputSchema.safeParse({
     url: formData.get('url'),
     customAlias: formData.get('customAlias'),
