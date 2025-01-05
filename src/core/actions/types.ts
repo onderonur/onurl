@@ -3,9 +3,10 @@ import type { z } from 'zod';
 export type FieldErrors<Input> = z.ZodFormattedError<Input>;
 
 export type ServerActionState<Input, Data> =
-  | { success: true; data: Data }
+  | { status: 'idle' }
+  | { status: 'success'; data: Data }
   | {
-      success: false;
+      status: 'error';
       error?: string;
       fieldErrors?: FieldErrors<Input>;
       formData: FormData;
