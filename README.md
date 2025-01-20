@@ -10,8 +10,8 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.vercel.app/)
 - Schema Validation: [Zod](https://zod.dev/)
 - Icons: [React Icons](https://react-icons.github.io/react-icons/)
 - Social Media Share Buttons: [react-share](https://github.com/nygardk/react-share)
-- Database: [MongoDB](https://www.mongodb.com/)
-- ODM: [Prisma](https://www.prisma.io/)
+- Database: [PostgreSQL](https://www.postgresql.org/)
+- ORM: [Prisma](https://www.prisma.io/)
 - Illustrations: [unDraw](https://undraw.co/)
 - Linting: [ESLint](https://eslint.org/)
 - Code Formatting: [Prettier](https://prettier.io/)
@@ -21,7 +21,7 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.vercel.app/)
 
 TODO: `README` will be updated for using Docker.
 
-First, you need to set a MongoDB connection string for `DATABASE_URL` in `.env.development`.
+First, you need to set a PostgreSQL connection string for `POSTGRES_URL` in `.env.development`.
 
 Install dependencies:
 
@@ -37,7 +37,7 @@ Run it in development mode:
 
 ## 🚀 Build
 
-First, we need to set a MongoDB connection string for `DATABASE_URL` in `.env.production`.
+First, we need to set a PostgreSQL connection string for `POSTGRES_URL` in `.env.production`.
 
 After that, we need to run the below command first to create a production build:
 

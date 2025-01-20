@@ -1,30 +1,17 @@
-import type { Maybe } from '@/core/shared/types';
+// https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
 import { PrismaClient } from '@prisma/client';
 
-const { DATABASE_URL } = process.env;
+const prismaClientSingleton = () => {
+  return new PrismaClient();
+};
 
-if (!DATABASE_URL) {
-  throw new Error('Please define the DATABASE_URL environment variable');
-}
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
+} & typeof global;
 
-declare global {
-  // eslint-disable-next-line no-var
-  var db: Maybe<{
-    prisma: PrismaClient;
-    promise: Maybe<Promise<void>>;
-  }>;
-}
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
 
-export async function connectToDb() {
-  if (!globalThis.db) {
-    globalThis.db = { prisma: new PrismaClient(), promise: null };
-  }
+export { prisma };
 
-  if (!globalThis.db.promise) {
-    globalThis.db.promise = globalThis.db.prisma.$connect();
-  }
-
-  await globalThis.db.promise;
-
-  return globalThis.db.prisma;
-}
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma;

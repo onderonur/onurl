@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
 }
 
 model ShortUrl {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(cuid())
   url       String
   alias     String   @unique
   clicks    Int

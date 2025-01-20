@@ -1,7 +1,7 @@
 'use server';
 
 import type { ServerActionState } from '@/core/actions/types';
-import { connectToDb } from '@/core/db/db';
+import { prisma } from '@/core/db/db';
 import { isUniqueConstraintError } from '@/core/db/utils';
 import { getShortUrl } from '@/features/short-urls/data';
 import { DEFAULT_ALIAS_LENGTH } from '@/features/short-urls/utils';
@@ -42,8 +42,6 @@ export async function createShortUrl(
     return { status: 'error', error: 'Invalid host', formData };
   }
 
-  const prisma = await connectToDb();
-
   const [error, shortUrl] = await goTry(() =>
     prisma.shortUrl.create({
       data: {
@@ -70,8 +68,6 @@ export async function createShortUrl(
 }
 
 export async function increaseShortUrlClicks(alias: string) {
-  const prisma = await connectToDb();
-
   const shortUrl = await getShortUrl(alias);
 
   if (!shortUrl) return;

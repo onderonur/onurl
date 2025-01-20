@@ -1,15 +1,24 @@
+# https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
 name: onurl-development
 
 services:
   db:
-    build: ./mongodb_replica
-    restart: unless-stopped
-    env_file:
-      - ../../.env.development
+    image: postgres:16.4-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev-db
     ports:
-      - 27018:27018
+      - 5432:5432
     volumes:
-      - mongodb-data:/data/db
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
 volumes:
-  mongodb-data:
+  postgres_data:
