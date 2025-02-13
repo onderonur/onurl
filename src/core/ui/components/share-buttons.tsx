@@ -21,7 +21,7 @@ type ShareButtonsProps = {
 };
 
 export function ShareButtons({ url }: ShareButtonsProps) {
-  const shareIconSize = '3.2rem';
+  const shareIconSize = '2.6rem';
 
   const shareIconProps = { size: shareIconSize, round: true };
 

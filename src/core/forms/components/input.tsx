@@ -11,8 +11,8 @@ export function Input({ className, ...rest }: InputProps) {
     <input
       id={ids.input}
       className={twMerge(
-        'w-full rounded-md p-2 shadow-md',
-        isInvalid && 'outline [&:not(:focus)]:outline-error-600',
+        'w-full rounded-md bg-white p-2 shadow-md',
+        isInvalid && 'not-focus:outline-error-foreground outline',
         className,
       )}
       aria-invalid={isInvalid}

@@ -5,7 +5,7 @@ import { twJoin, twMerge } from 'tailwind-merge';
 const buttonVarians = cva(
   [
     'relative inline-flex items-center justify-center rounded-md font-semibold transition-colors',
-    'disabled:bg-disabled-300 disabled:text-disabled-400',
+    'disabled:bg-disabled disabled:text-disabled-foreground',
   ],
   {
     variants: {

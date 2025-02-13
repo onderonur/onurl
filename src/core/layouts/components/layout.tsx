@@ -35,10 +35,10 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex items-center px-4 py-2">
-        <NextLink href="/" className="text-2xl font-black text-primary-600">
+        <NextLink href="/" className="text-primary-600 text-2xl font-black">
           {APP_TITLE}
         </NextLink>
-        <div className="flex-grow" />
+        <div className="grow" />
         <ExternalLink
           href="https://github.com/onderonur"
           aria-label="Check the source code on GitHub"

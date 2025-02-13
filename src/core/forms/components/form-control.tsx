@@ -59,7 +59,8 @@ export function FormLabel({ className, children, ...rest }: FormLabel) {
       className={twMerge('font-semibold text-slate-700', className)}
       {...rest}
     >
-      {children} {isRequired ? <span className="text-error-600">*</span> : null}
+      {children}{' '}
+      {isRequired ? <span className="text-error-foreground">*</span> : null}
     </label>
   );
 }
@@ -72,7 +73,7 @@ export function FormErrorMessage() {
   return (
     <div
       id={ids.message}
-      className="text-error-600"
+      className="text-error-foreground"
       aria-live="polite"
       aria-atomic
     >

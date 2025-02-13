@@ -1,11 +1,48 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: var(--font-inter);
+
+  --color-primary-50: #fff1f2;
+  --color-primary-100: #ffe4e6;
+  --color-primary-200: #fecdd3;
+  --color-primary-300: #fda4af;
+  --color-primary-400: #fb7185;
+  --color-primary-500: #f43f5e;
+  --color-primary-600: #e11d48;
+  --color-primary-700: #be123c;
+  --color-primary-800: #9f1239;
+  --color-primary-900: #881337;
+  --color-primary-950: #4c0519;
+
+  --color-text-50: #f8fafc;
+  --color-text-100: #f1f5f9;
+  --color-text-200: #e2e8f0;
+  --color-text-300: #cbd5e1;
+  --color-text-400: #94a3b8;
+  --color-text-500: #64748b;
+  --color-text-600: #475569;
+  --color-text-700: #334155;
+  --color-text-800: #1e293b;
+  --color-text-900: #0f172a;
+  --color-text-950: #020617;
+
+  --color-success: #dcfce7;
+  --color-success-foreground: #15803d;
+
+  --color-error: #fee2e2;
+  --color-error-foreground: #dc2626;
+
+  --color-disabled: #d1d5db;
+  --color-disabled-foreground: #475569;
+
+  --color-border: #cbd5e1;
+}
 
 @layer base {
   a,
   input,
   button {
-    @apply focus-visible:outline-offset-2 focus-visible:outline-primary-300;
+    @apply focus-visible:outline-primary-300 focus-visible:outline-offset-2;
   }
 }

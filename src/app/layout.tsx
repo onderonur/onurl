@@ -59,7 +59,7 @@ export default function RootLayout({
         'text-[clamp(0.875rem,0.667rem+0.52vw,1rem)]',
       )}
     >
-      <body className="bg-gradient-to-r from-rose-100 to-teal-100">
+      <body className="bg-linear-to-r from-rose-100 to-teal-100">
         <Layout>{children}</Layout>
       </body>
     </html>

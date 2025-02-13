@@ -17,10 +17,10 @@ export function Alert({ type, message }: AlertProps) {
   return (
     <div
       className={twJoin(
-        'flex items-center gap-3 rounded-sm p-4 font-semibold',
+        'flex items-center gap-3 rounded-xs p-4 font-semibold',
         type === 'success'
-          ? 'bg-success-100 text-success-700'
-          : 'bg-error-100 text-error-700',
+          ? 'bg-success text-success-foreground'
+          : 'bg-error text-error-foreground',
       )}
     >
       <IconComponent className="size-6 flex-none" />
