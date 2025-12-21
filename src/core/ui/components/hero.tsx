@@ -8,7 +8,7 @@ export function Hero() {
       <div className="mb-4 h-56">
         <UrlShortenerLogo />
       </div>
-      <div className="text-center font-semibold text-text-700">
+      <div className="text-text-700 text-center font-semibold">
         <h1 className="sr-only">{APP_TITLE}</h1>
         <p>
           <span className="text-primary-600">{APP_TITLE}</span> is an open

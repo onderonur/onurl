@@ -29,7 +29,7 @@
     "file-saver": "^2.0.5",
     "go-try": "^3.0.2",
     "nanoid": "^5.0.9",
-    "next": "15.1.0",
+    "next": "15.1.11",
     "qrcode.react": "^4.2.0",
     "react": "19.0.0",
     "react-copy-to-clipboard": "^5.1.0",

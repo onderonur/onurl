@@ -14,11 +14,11 @@ export function UrlSummary({ title, url, canBeCopied }: UrlSummaryProps) {
   return (
     <div className="flex flex-wrap items-start justify-between gap-2">
       <div>
-        <h3 className="font-bold text-text-700">{title}</h3>
+        <h3 className="text-text-700 font-bold">{title}</h3>
         <ExternalLink href={url} hasIcon className="break-all">
           {url}
         </ExternalLink>
-        <p className="text-sm text-text-500">
+        <p className="text-text-500 text-sm">
           <span className="font-semibold">{url.length}</span> characters
         </p>
       </div>

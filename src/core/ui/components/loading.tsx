@@ -11,7 +11,7 @@ export function Loading({ className, iconClassName }: LoadingProps) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className={twMerge(
-          'size-12 animate-spin text-primary-700',
+          'text-primary-700 size-12 animate-spin',
           iconClassName,
         )}
         fill="none"
