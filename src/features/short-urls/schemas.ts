@@ -16,3 +16,9 @@ export const shortUrlInputSchema = z.object({
 });
 
 export type ShortUrlInput = z.infer<typeof shortUrlInputSchema>;
+
+export const increaseShortUrlClicksInputSchema = z.string().nonempty();
+
+export type IncreaseShortUrlClicksInput = z.infer<
+  typeof increaseShortUrlClicksInputSchema
+>;

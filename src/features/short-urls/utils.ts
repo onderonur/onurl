@@ -1,4 +1,4 @@
-import type { ShortUrl } from '@prisma/client';
+import type { ShortUrl } from '@/core/db/schema';
 
 export const DEFAULT_ALIAS_LENGTH = 10;
 export const URL_LIFETIME_IN_MINUTES = 5;

@@ -11,14 +11,13 @@ type AliasPageProps = {
 
 export default async function AliasPage(props: AliasPageProps) {
   const { alias } = await props.params;
+  await increaseShortUrlClicks(alias);
 
   const shortUrl = await getShortUrl(alias);
 
   if (!shortUrl || isShortUrlExpired(shortUrl)) {
     notFound();
   }
-
-  await increaseShortUrlClicks(alias);
 
   return permanentRedirect(shortUrl.url);
 }

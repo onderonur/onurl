@@ -11,7 +11,7 @@ Live site on [Vercel](https://vercel.com) is **[here](https://onurl.vercel.app/)
 - Icons: [React Icons](https://react-icons.github.io/react-icons/)
 - Social Media Share Buttons: [react-share](https://github.com/nygardk/react-share)
 - Database: [PostgreSQL](https://www.postgresql.org/)
-- ORM: [Prisma](https://www.prisma.io/)
+- ORM: [Drizzle](https://orm.drizzle.team/)
 - Illustrations: [unDraw](https://undraw.co/)
 - Linting: [ESLint](https://eslint.org/)
 - Code Formatting: [Prettier](https://prettier.io/)
@@ -27,7 +27,11 @@ Install dependencies:
 
 ### `pnpm install`
 
-Create db constaints (like `@unique` indexes):
+Generate SQL migrations after schema changes:
+
+### `pnpm db:generate`
+
+Apply database migrations:
 
 ### `pnpm db:migrate`
 

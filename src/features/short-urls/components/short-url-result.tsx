@@ -1,3 +1,4 @@
+import type { ShortUrl } from '@/core/db/schema';
 import type { Maybe } from '@/core/shared/types';
 import { Alert } from '@/core/ui/components/alert';
 import { Divider } from '@/core/ui/components/divider';
@@ -5,7 +6,6 @@ import { Paper } from '@/core/ui/components/paper';
 import { ShareButtons } from '@/core/ui/components/share-buttons';
 import { UrlQrCode } from '@/core/ui/components/url-qr-code';
 import { UrlSummary } from '@/features/short-urls/components/url-summary';
-import type { ShortUrl } from '@prisma/client';
 
 type ShortUrlResultProps = {
   shortUrl: Maybe<ShortUrl>;

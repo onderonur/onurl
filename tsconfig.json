@@ -13,6 +13,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    // Drizzle returns array for `where()` + `take(1)` queries and
+    // accessing items like `results[0]` misses `undefined` when there are
+    // no records matching `where` clause. So, we enable this to make checking
+    // indexed access a requirement.
+    "noUncheckedIndexedAccess": true,
     "plugins": [
       {
         "name": "next"
